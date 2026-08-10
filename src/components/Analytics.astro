@@ -1,0 +1,125 @@
+---
+/**
+ * Analytics.astro
+ * 
+ * Captura eventos personalizados de Google Analytics 4 (gtag.js):
+ * - Click en cualquier botón/enlace de WhatsApp (wa.me)
+ * - Click en cualquier botón/enlace de teléfono (tel:)
+ * - Click en perfil de Google Reviews
+ * 
+ * El evento se dispara automáticamente sin necesidad de modificar cada botón.
+ * Se incluye una sola vez en el BaseLayout para que funcione en todas las páginas.
+ */
+---</think><!-- Analytics: Eventos personalizados GA4 -->
+<script is:inline>
+(function() {
+  // Esperar a que gtag esté disponible
+  function waitForGtag(callback) {
+    if (typeof window.gtag === 'function') {
+      callback();
+    } else {
+      setTimeout(function() { waitForGtag(callback); }, 100);
+    }
+  }
+
+  function trackEvent(eventName, params) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+      console.log('[GA4] Event tracked:', eventName, params);
+    }
+  }
+
+  // Datos de la página actual para enviar como metadata
+  var pageData = {
+    page_path: window.location.pathname,
+    page_title: document.title,
+    page_location: window.location.href
+  };
+
+  // Detectar clicks en cualquier enlace de WhatsApp
+  document.addEventListener('click', function(e) {
+    // Buscar el <a> más cercano al elemento clickeado
+    var target = e.target;
+    var link = target.closest('a');
+    if (!link) return;
+
+    var href = link.href || '';
+    var linkText = (link.textContent || '').trim().substring(0, 100);
+
+    // Click en WhatsApp (wa.me)
+    if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com/') !== -1) {
+      trackEvent('whatsapp_click', {
+        link_url: href,
+        link_text: linkText,
+        link_location: getPageSection(link),
+        ...pageData
+      });
+    }
+
+    // Click en teléfono (tel:)
+    else if (href.indexOf('tel:') === 0) {
+      trackEvent('phone_click', {
+        link_url: href,
+        link_text: linkText,
+        link_location: getPageSection(link),
+        ...pageData
+      });
+    }
+
+    // Click en perfil de Google Reviews
+    else if (href.indexOf('share.google/') !== -1) {
+      trackEvent('google_profile_click', {
+        link_url: href,
+        link_text: linkText,
+        link_location: getPageSection(link),
+        ...pageData
+      });
+    }
+  });
+
+  // Detectar la sección de la página donde se hizo click
+  function getPageSection(element) {
+    // Buscar ancestros relevantes para determinar la sección
+    var section = element.closest('section, header, footer, nav, [data-section]');
+    if (!section) return 'unknown';
+
+    // Si tiene id, usarlo
+    if (section.id) return section.id;
+
+    // Si tiene data-section, usarlo
+    if (section.dataset && section.dataset.section) return section.dataset.section;
+
+    // Si está en header, footer o nav
+    var tagName = section.tagName.toLowerCase();
+    if (tagName === 'header') return 'header';
+    if (tagName === 'footer') return 'footer';
+    if (tagName === 'nav') return 'nav';
+
+    // Buscar el h2 o h3 más cercano para identificar la sección
+    var heading = section.querySelector('h2, h3');
+    if (heading) {
+      var headingText = (heading.textContent || '').trim().substring(0, 50);
+      return headingText || 'section_' + Math.random().toString(36).substring(2, 8);
+    }
+
+    return 'body';
+  }
+
+  // Detectar envío de formularios (opcional, por si se agrega después)
+  document.addEventListener('submit', function(e) {
+    var form = e.target;
+    if (form && form.tagName === 'FORM') {
+      trackEvent('form_submit', {
+        form_id: form.id || 'unknown',
+        form_action: form.action || '',
+        ...pageData
+      });
+    }
+  });
+
+  // Inicializar cuando gtag esté listo
+  waitForGtag(function() {
+    console.log('[GA4] Analytics events listener ready');
+  });
+})();
+</script>

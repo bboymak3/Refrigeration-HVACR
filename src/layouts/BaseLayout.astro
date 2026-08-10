@@ -6,6 +6,7 @@ import WhatsAppCTA from '@/components/WhatsAppCTA.astro';
 import BottomNav from '@/components/BottomNav.astro';
 import GoogleReviewsModal from '@/components/GoogleReviewsModal.astro';
 import EpaLicenseBadge from '@/components/EpaLicenseBadge.astro';
+import Analytics from '@/components/Analytics.astro';
 import { config } from '@/data/config';
 
 interface Props {
@@ -154,5 +155,6 @@ const pageTitle = title.split('|')[0].trim();
     <WhatsAppCTA />
     <BottomNav />
     <GoogleReviewsModal />
+    <Analytics />
   </body>
 </html>
