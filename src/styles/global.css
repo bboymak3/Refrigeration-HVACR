@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body {
+    @apply bg-dark-300 text-gray-100 font-sans antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(0, 212, 255, 0.06) 0%, transparent 40%),
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+  ::selection {
+    @apply bg-neon-500 text-dark-500;
+  }
+  /* Prevenir overflow horizontal en mobile */
+  img, video, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-neon {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           bg-neon-500 text-dark-500 font-bold uppercase tracking-wide
+           transition-all duration-300 hover:bg-neon-400
+           hover:shadow-neon-lg hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-neon-400 focus:ring-offset-2 focus:ring-offset-dark-300;
+  }
+
+  .btn-outline-neon {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           border-2 border-neon-500 text-neon-500 font-bold uppercase tracking-wide
+           transition-all duration-300 hover:bg-neon-500 hover:text-dark-500
+           hover:shadow-neon-lg;
+  }
+
+  .btn-orange {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           bg-orange-500 text-dark-500 font-bold uppercase tracking-wide
+           transition-all duration-300 hover:bg-orange-400
+           hover:shadow-orange-neon-lg hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-dark-300;
+  }
+
+  .btn-outline-orange {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           border-2 border-orange-500 text-orange-500 font-bold uppercase tracking-wide
+           transition-all duration-300 hover:bg-orange-500 hover:text-dark-500
+           hover:shadow-orange-neon-lg;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           bg-[#25D366] text-white font-bold uppercase tracking-wide
+           transition-all duration-300 hover:bg-[#1ebe57] hover:-translate-y-0.5
+           hover:shadow-[0_0_20px_rgba(37,211,102,0.6)];
+  }
+
+  .card-neon {
+    @apply bg-dark-200/80 backdrop-blur-sm border border-neon-500/20
+           rounded-xl p-6 transition-all duration-300
+           hover:border-neon-500/60 hover:shadow-neon hover:-translate-y-1;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold
+           text-transparent bg-clip-text bg-gradient-neon
+           mb-4 leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-gray-400 text-lg max-w-2xl mx-auto;
+  }
+
+  .input-neon {
+    @apply w-full bg-dark-100/80 border border-neon-500/20
+           rounded-lg px-4 py-3 text-gray-100 placeholder-gray-500
+           focus:outline-none focus:border-neon-500 focus:ring-2 focus:ring-neon-500/30
+           transition-all duration-200;
+  }
+
+  .badge-neon {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full
+           bg-neon-500/10 border border-neon-500/30
+           text-neon-400 text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .badge-orange {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full
+           bg-orange-500/10 border border-orange-500/40
+           text-orange-400 text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .card-orange {
+    @apply bg-dark-200/80 backdrop-blur-sm border-2 border-orange-500/50
+           rounded-xl p-6 transition-all duration-300
+           hover:border-orange-500 hover:shadow-orange-neon-lg hover:-translate-y-1;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.5);
+  }
+
+  .glow-text-orange {
+    text-shadow: 0 0 10px rgba(255, 138, 0, 0.9), 0 0 20px rgba(255, 138,  0, 0.6), 0 0 30px rgba(255, 138, 0, 0.3);
+  }
+
+  .divider-neon {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-neon-500 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Scrollbar custom */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4ff, #007d99);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff;
+}

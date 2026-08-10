@@ -1,0 +1,157 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppCTA from '@/components/WhatsAppCTA.astro';
+import BottomNav from '@/components/BottomNav.astro';
+import GoogleReviewsModal from '@/components/GoogleReviewsModal.astro';
+import EpaLicenseBadge from '@/components/EpaLicenseBadge.astro';
+import { config } from '@/data/config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  skipBreadcrumb?: boolean;
+  skipAutoRepair?: boolean;
+  skipEpaBadge?: boolean;
+}
+
+const {
+  title = `${config.marcaLarga} | Refrigeration & HVAC Repair in New Jersey`,
+  description = 'Refrigeration & HVAC Repair in New Jersey. Reparación de refrigeración comercial, AC, cuartos fríos, freezers, hornos y freidoras. Licencia EPA 608, garantía 3 meses. WhatsApp 937-450-0421.',
+  ogImage = '/og-image.svg',
+  canonical,
+  skipBreadcrumb = false,
+  skipAutoRepair = false,
+  skipEpaBadge = false,
+} = Astro.props;
+
+const currentUrl = canonical || Astro.url.pathname;
+const fullUrl = new URL(currentUrl, config.dominio).toString();
+const ogImageUrl = new URL(ogImage, config.dominio).toString();
+
+const pageTitle = title.split('|')[0].trim();
+---
+
+<!doctype html>
+<html lang="es-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="commercial refrigeration repair, newark cooler repair, newark hvac repairs, refrigeration newark nj bloomfield ave, hvac repair nj, refrigeration repair nj" />
+    <meta name="author" content={config.marca} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={fullUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={fullUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:secure_url" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:locale" content="es_US" />
+    <meta property="og:site_name" content={config.marca} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={fullUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="application-name" content={config.marca} />
+    <meta name="theme-color" content="#00d4ff" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Structured Data: AutoRepair base (solo si la página no define el suyo propio) -->
+    {!skipAutoRepair && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "name": config.marcaLarga,
+        "alternateName": config.marca,
+        "image": ogImage,
+        "description": "Refrigeration & HVAC Repair in New Jersey, USA. Reparación de refrigeración comercial, AC, cuartos fríos, freezers, hornos y freidoras. Licencia EPA 608.",
+        "url": config.dominio,
+        "telephone": config.telefonoDisplay,
+        "email": config.email,
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "NJ",
+          "addressCountry": "US"
+        },
+        "areaServed": "New Jersey, USA",
+        "openingHours": "Mo-Sa 08:00-20:00",
+        "priceRange": "$$",
+        "sameAs": [config.googleUrl]
+      })} />
+    )}
+
+    <!-- BreadcrumbList Schema (genérico - solo si la página no define el suyo) -->
+    {!skipBreadcrumb && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": `${config.dominio}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": pageTitle,
+            "item": fullUrl.endsWith('/') ? fullUrl : `${fullUrl}/`
+          }
+        ]
+      })} />
+    )}
+
+    <!-- Preconnect to WhatsApp for faster CTA -->
+    <link rel="preconnect" href="https://wa.me" />
+
+    <!-- Leaflet CSS para mapa interactivo -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Google Tag Manager placeholder -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+  <body class="min-h-screen flex flex-col pt-16 md:pt-20 pb-16 md:pb-0">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    {!skipEpaBadge && <EpaLicenseBadge />}
+    <Footer />
+    <WhatsAppCTA />
+    <BottomNav />
+    <GoogleReviewsModal />
+  </body>
+</html>

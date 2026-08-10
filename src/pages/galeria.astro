@@ -1,0 +1,184 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { config, waLink } from '@/data/config';
+
+const galleryItems = [
+  { emoji: '❄️', titulo: 'Reparación de Refrigerador Comercial', categoria: 'Refrigeración', gradient: 'from-cyan-600/30 to-blue-900/40', desc: 'Reparación de compresor, recarga de gas refrigerante, termostatos y sistemas eléctricos en refrigeradores comerciales de marcas True, Beverage-Air y Turbo Air.' },
+  { emoji: '🌬️', titulo: 'Instalación de AC Mini-Split', categoria: 'HVAC', gradient: 'from-sky-600/30 to-cyan-900/40', desc: 'Instalación profesional de AC mini-split con manejo de refrigerante bajo Licencia EPA 608. Para viviendas y comercios en New Jersey.' },
+  { emoji: '🔥', titulo: 'Reparación de Horno (Furnace)', categoria: 'Calefacción', gradient: 'from-orange-600/30 to-red-900/40', desc: 'Reparación de hornos a gas y eléctricos. Reemplazo de ignitores, sensores de llama y válvulas de gas para inviernos de NJ.' },
+  { emoji: '🏪', titulo: 'Walk-in Cooler Instalado', categoria: 'Cuartos Fríos', gradient: 'from-teal-600/30 to-cyan-900/40', desc: 'Instalación de walk-in coolers y freezers para restaurantes con paneles de poliuretano y sistemas de refrigeración de alta eficiencia.' },
+  { emoji: '🧊', titulo: 'Reparación de Freezer Comercial', categoria: 'Refrigeración', gradient: 'from-blue-600/30 to-indigo-900/40', desc: 'Diagnóstico y reparación de freezers comerciales chest y upright. Recarga de gas con Licencia EPA 608.' },
+  { emoji: '🍳', titulo: 'Reparación de Estufa Comercial', categoria: 'Cocina', gradient: 'from-amber-600/30 to-orange-900/40', desc: 'Reparación de estufas, hornos y rangos comerciales Vulcan, Wolf y Garland. Gas y eléctricos.' },
+  { emoji: '🍟', titulo: 'Mantenimiento de Freidora', categoria: 'Cocina', gradient: 'from-yellow-600/30 to-orange-900/40', desc: 'Reparación de freidoras comerciales Frymaster, Pitco y Vulcan. Termostatos, quemadores y válvulas de seguridad.' },
+  { emoji: '🛠️', titulo: 'Mantenimiento Preventivo HVAC', categoria: 'Mantenimiento', gradient: 'from-cyan-600/30 to-teal-900/40', desc: 'Planes de mantenimiento preventivo para equipos de refrigeración y HVAC. Limpieza, filtros, refrigerante y calibración.' },
+];
+
+// Breadcrumb
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${config.dominio}/` },
+    { "@type": "ListItem", "position": 2, "name": "Galería", "item": `${config.dominio}/galeria/` }
+  ]
+};
+---
+
+<BaseLayout
+  title="Galería de Trabajos en NJ | Alexandro HVACR"
+  description="Galería de trabajos de refrigeración comercial y HVAC realizados en New Jersey. Refrigeradores, AC, walk-in coolers, freezers y más. Licencia EPA 608."
+  canonical="/galeria/"
+  skipBreadcrumb={true}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- HERO -->
+  <section class="relative pt-12 pb-12 overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="absolute top-0 left-0 w-96 h-96 bg-neon-500/10 rounded-full blur-3xl"></div>
+
+    <div class="container-x relative">
+      <nav class="flex items-center gap-2 text-xs text-gray-500 mb-8">
+        <a href="/" class="hover:text-neon-400 transition-colors">Inicio</a>
+        <span>/</span>
+        <span class="text-neon-400">Galería</span>
+      </nav>
+
+      <div class="text-center max-w-4xl mx-auto">
+        <span class="badge-neon mb-4">Galería</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white mb-6 leading-tight text-balance">
+          Trabajos de <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Refrigeración & HVAC</span> en NJ
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+          Tipos de trabajos de refrigeración comercial y HVAC que realizamos en las 10 ciudades de New Jersey que cubrimos. Haz click en cualquier tarjeta para ver más detalles.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería completa -->
+  <section class="py-12 relative">
+    <div class="container-x">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {galleryItems.map((item, i) => (
+          <button
+            type="button"
+            class="gallery-item group relative aspect-video rounded-xl overflow-hidden border-2 border-neon-500/20 hover:border-neon-500/60 transition-all text-left"
+            data-index={i}
+            aria-label={`Ver ${item.titulo}`}
+          >
+            <div class={`absolute inset-0 bg-gradient-to-br ${item.gradient}`}></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="text-7xl md:text-8xl group-hover:scale-110 transition-transform duration-500">{item.emoji}</span>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-400/95 via-dark-300/40 to-transparent flex items-end p-4">
+              <div>
+                <div class="text-xs text-neon-400 uppercase tracking-wide mb-1">{item.categoria}</div>
+                <h2 class="text-base font-display font-bold text-white line-clamp-2">{item.titulo}</h2>
+              </div>
+            </div>
+            <div class="absolute top-2 right-2 px-2 py-1 bg-dark-300/80 backdrop-blur rounded text-[10px] text-neon-400 uppercase tracking-wide border border-neon-500/30">
+              {item.categoria}
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-dark-400 via-dark-300 to-dark-400"></div>
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="container-x relative text-center">
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+        ¿Quieres ver un trabajo <span class="text-neon-400 glow-text">específico</span>?
+      </h2>
+      <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+        Escríbenos por WhatsApp y te enviamos fotos de trabajos similares al que necesitas. Atendemos en 10 ciudades de New Jersey.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={waLink('Hola, quiero ver ejemplos de trabajos')} target="_blank" rel="noopener" class="btn-whatsapp">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          Solicitar ejemplos
+        </a>
+        <a href="/servicios/" class="btn-outline-neon">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- Lightbox modal -->
+<div id="gallery-lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-dark-500/90 backdrop-blur-sm" id="gallery-lightbox-overlay"></div>
+  <div class="relative max-w-3xl w-full">
+    <button id="gallery-lightbox-close" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-dark-200 border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 flex items-center justify-center transition-colors z-10" aria-label="Cerrar">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div id="gallery-lightbox-content" class="relative aspect-video rounded-2xl overflow-hidden border-2 border-neon-500/40 shadow-neon-lg">
+    </div>
+    <div class="flex justify-between items-center mt-4">
+      <button id="gallery-lightbox-prev" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label="Anterior">← Anterior</button>
+      <span id="gallery-lightbox-counter" class="text-sm text-gray-400"></span>
+      <button id="gallery-lightbox-next" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label="Siguiente">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ galleryItems }}>
+  const items = galleryItems;
+  let currentIndex = 0;
+  const modal = document.getElementById('gallery-lightbox');
+  const content = document.getElementById('gallery-lightbox-content');
+  const counter = document.getElementById('gallery-lightbox-counter');
+  const overlay = document.getElementById('gallery-lightbox-overlay');
+  const closeBtn = document.getElementById('gallery-lightbox-close');
+  const prevBtn = document.getElementById('gallery-lightbox-prev');
+  const nextBtn = document.getElementById('gallery-lightbox-next');
+
+  function render(index) {
+    if (!content) return;
+    const item = items[index];
+    content.className = 'relative aspect-video rounded-2xl overflow-hidden border-2 border-neon-500/40 shadow-neon-lg bg-gradient-to-br ' + item.gradient;
+    content.innerHTML = '<div class="absolute inset-0 bg-gradient-to-br ' + item.gradient + '"></div>' +
+      '<div class="absolute inset-0 flex items-center justify-center"><span class="text-[10rem]">' + item.emoji + '</span></div>' +
+      '<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-dark-500/95 to-transparent">' +
+        '<div class="text-xs text-neon-400 uppercase tracking-wide mb-1">' + item.categoria + '</div>' +
+        '<h3 class="text-xl font-display font-bold text-white mb-2">' + item.titulo + '</h3>' +
+        '<p class="text-sm text-gray-300">' + item.desc + '</p>' +
+      '</div>';
+    counter.textContent = (index + 1) + ' / ' + items.length;
+  }
+
+  function openModal(index) {
+    currentIndex = index;
+    render(index);
+    if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeModal() {
+    if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+  }
+  function next() { currentIndex = (currentIndex + 1) % items.length; render(currentIndex); }
+  function prev() { currentIndex = (currentIndex - 1 + items.length) % items.length; render(currentIndex); }
+
+  document.querySelectorAll('.gallery-item').forEach((el) => {
+    el.addEventListener('click', () => {
+      const idx = parseInt(el.getAttribute('data-index') || '0', 10);
+      openModal(idx);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+  document.addEventListener('keydown', (e) => {
+    if (modal && !modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    }
+  });
+</script>

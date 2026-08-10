@@ -1,0 +1,139 @@
+---
+import { waLink } from '@/data/config';
+
+// Galería con gradientes + emojis (sin necesidad de archivos de imagen)
+const galleryItems = [
+  { emoji: '❄️', titulo: 'Reparación de Refrigerador Comercial', categoria: 'Refrigeración', gradient: 'from-cyan-600/30 to-blue-900/40' },
+  { emoji: '🌬️', titulo: 'Instalación de AC Mini-Split', categoria: 'HVAC', gradient: 'from-sky-600/30 to-cyan-900/40' },
+  { emoji: '🔥', titulo: 'Reparación de Horno (Furnace)', categoria: 'Calefacción', gradient: 'from-orange-600/30 to-red-900/40' },
+  { emoji: '🏪', titulo: 'Walk-in Cooler Instalado', categoria: 'Cuartos Fríos', gradient: 'from-teal-600/30 to-cyan-900/40' },
+  { emoji: '🧊', titulo: 'Reparación de Freezer Comercial', categoria: 'Refrigeración', gradient: 'from-blue-600/30 to-indigo-900/40' },
+  { emoji: '🍳', titulo: 'Reparación de Estufa Comercial', categoria: 'Cocina', gradient: 'from-amber-600/30 to-orange-900/40' },
+  { emoji: '🍟', titulo: 'Mantenimiento de Freidora', categoria: 'Cocina', gradient: 'from-yellow-600/30 to-orange-900/40' },
+  { emoji: '🛠️', titulo: 'Mantenimiento Preventivo HVAC', categoria: 'Mantenimiento', gradient: 'from-cyan-600/30 to-teal-900/40' },
+];
+---
+
+<section id="galeria" class="py-20 relative overflow-hidden">
+  <div class="container-x">
+    <div class="text-center mb-12">
+      <span class="badge-neon mb-4">Galería</span>
+      <h2 class="section-title">Trabajos en New Jersey</h2>
+      <p class="section-subtitle">
+        Tipos de trabajos de refrigeración comercial y HVAC que realizamos en las 10 ciudades de New Jersey que cubrimos. Cada tarjeta representa el tipo de servicio que podemos realizar en tu negocio u hogar.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {galleryItems.map((item, i) => (
+        <button
+          type="button"
+          class="gallery-item group relative aspect-square rounded-xl overflow-hidden border-2 border-neon-500/20 hover:border-neon-500/60 transition-all bg-gradient-to-br"
+          data-index={i}
+          aria-label={`Ver ${item.titulo}`}
+          style={`background-image: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(10,10,10,0.6));`}
+        >
+          <div class={`absolute inset-0 bg-gradient-to-br ${item.gradient}`}></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-6xl md:text-7xl group-hover:scale-110 transition-transform duration-500">{item.emoji}</span>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-400/95 via-dark-300/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <div>
+              <div class="text-xs text-neon-400 uppercase tracking-wide mb-1">{item.categoria}</div>
+              <h3 class="text-sm font-display font-bold text-white line-clamp-2">{item.titulo}</h3>
+            </div>
+          </div>
+          <div class="absolute top-2 right-2 px-2 py-1 bg-dark-300/80 backdrop-blur rounded text-[10px] text-neon-400 uppercase tracking-wide border border-neon-500/30">
+            {item.categoria}
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <div class="text-center mt-10">
+      <p class="text-sm text-gray-500 mb-4">
+        ¿Quieres ver más o tienes preguntas sobre un servicio específico?
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/galeria/" class="btn-outline-neon text-sm">Ver galería completa</a>
+        <a href={waLink('Hola, quiero ver ejemplos de trabajos')} target="_blank" rel="noopener" class="btn-whatsapp text-sm">
+          Solicitar ejemplos
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox modal -->
+<div id="gallery-lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-dark-500/90 backdrop-blur-sm" id="gallery-lightbox-overlay"></div>
+  <div class="relative max-w-3xl w-full">
+    <button id="gallery-lightbox-close" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-dark-200 border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 flex items-center justify-center transition-colors z-10" aria-label="Cerrar">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div id="gallery-lightbox-content" class="relative aspect-video rounded-2xl overflow-hidden border-2 border-neon-500/40 shadow-neon-lg">
+      <!-- Contenido inyectado por JS -->
+    </div>
+    <div class="flex justify-between items-center mt-4">
+      <button id="gallery-lightbox-prev" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label="Anterior">← Anterior</button>
+      <span id="gallery-lightbox-counter" class="text-sm text-gray-400"></span>
+      <button id="gallery-lightbox-next" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label="Siguiente">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ galleryItems }}>
+  const items = galleryItems;
+  let currentIndex = 0;
+  const modal = document.getElementById('gallery-lightbox');
+  const content = document.getElementById('gallery-lightbox-content');
+  const counter = document.getElementById('gallery-lightbox-counter');
+  const overlay = document.getElementById('gallery-lightbox-overlay');
+  const closeBtn = document.getElementById('gallery-lightbox-close');
+  const prevBtn = document.getElementById('gallery-lightbox-prev');
+  const nextBtn = document.getElementById('gallery-lightbox-next');
+
+  function render(index) {
+    if (!content) return;
+    const item = items[index];
+    content.style.backgroundImage = 'linear-gradient(135deg, rgba(0,212,255,0.15), rgba(10,10,10,0.7))';
+    content.className = 'relative aspect-video rounded-2xl overflow-hidden border-2 border-neon-500/40 shadow-neon-lg bg-gradient-to-br ' + item.gradient;
+    content.innerHTML = '<div class="absolute inset-0 bg-gradient-to-br ' + item.gradient + '"></div>' +
+      '<div class="absolute inset-0 flex items-center justify-center"><span class="text-[10rem]">' + item.emoji + '</span></div>' +
+      '<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-dark-500/95 to-transparent">' +
+        '<div class="text-xs text-neon-400 uppercase tracking-wide mb-1">' + item.categoria + '</div>' +
+        '<h3 class="text-xl font-display font-bold text-white">' + item.titulo + '</h3>' +
+      '</div>';
+    counter.textContent = (index + 1) + ' / ' + items.length;
+  }
+
+  function openModal(index) {
+    currentIndex = index;
+    render(index);
+    if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeModal() {
+    if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+  }
+  function next() { currentIndex = (currentIndex + 1) % items.length; render(currentIndex); }
+  function prev() { currentIndex = (currentIndex - 1 + items.length) % items.length; render(currentIndex); }
+
+  document.querySelectorAll('.gallery-item').forEach((el) => {
+    el.addEventListener('click', () => {
+      const idx = parseInt(el.getAttribute('data-index') || '0', 10);
+      openModal(idx);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+  document.addEventListener('keydown', (e) => {
+    if (modal && !modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    }
+  });
+</script>

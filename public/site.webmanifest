@@ -1,0 +1,16 @@
+{
+  "name": "Alexandro Refrigeration HVACR",
+  "short_name": "Alexandro HVACR",
+  "description": "Refrigeration & HVAC Repair in New Jersey - Licencia 608 de la EPA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00d4ff",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

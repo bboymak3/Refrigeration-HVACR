@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { config } from '@/data/config';
+
+// Breadcrumb
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${config.dominio}/` },
+    { "@type": "ListItem", "position": 2, "name": "Política de Privacidad", "item": `${config.dominio}/politica-privacidad/` }
+  ]
+};
+---
+
+<BaseLayout
+  title="Política de Privacidad | Alexandro Refrigeration HVACR"
+  description="Política de privacidad de Alexandro Refrigeration HVACR. Cómo manejamos tus datos personales cuando solicitas una cotización."
+  canonical="/politica-privacidad/"
+  skipBreadcrumb={true}
+  skipEpaBadge={true}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <section class="relative pt-12 pb-20 overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-10"></div>
+    <div class="container-x relative">
+      <nav class="flex items-center gap-2 text-xs text-gray-500 mb-8">
+        <a href="/" class="hover:text-neon-400 transition-colors">Inicio</a>
+        <span>/</span>
+        <span class="text-neon-400">Política de Privacidad</span>
+      </nav>
+
+      <div class="max-w-3xl mx-auto prose prose-invert prose-lg">
+        <span class="badge-neon mb-4">Legal</span>
+        <h1 class="text-3xl md:text-4xl font-display font-extrabold text-white mb-6">
+          Política de <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Privacidad</span>
+        </h1>
+
+        <p class="text-sm text-gray-500 mb-8">Última actualización: {new Date().toLocaleDateString('es-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">1. Información que Recopilamos</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          En Alexandro Refrigeration HVAC Parts & Repair Services recopilamos la siguiente información cuando solicitas una cotización o nos contactas:
+        </p>
+        <ul class="text-gray-300 list-disc pl-6 space-y-2 mb-4">
+          <li>Nombre completo</li>
+          <li>Número de teléfono</li>
+          <li>Ciudad de residencia (en NJ)</li>
+          <li>Servicio de interés</li>
+          <li>Descripción de la falla o consulta</li>
+        </ul>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">2. Uso de la Información</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Usamos tu información únicamente para:
+        </p>
+        <ul class="text-gray-300 list-disc pl-6 space-y-2 mb-4">
+          <li>Procesar tu solicitud de cotización</li>
+          <li>Coordinar la visita del técnico a tu ubicación</li>
+          <li>Brindarte información sobre nuestros servicios</li>
+          <li>Dar seguimiento a trabajos realizados y garantías</li>
+        </ul>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">3. Compartir Información</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          No vendemos, alquilamos ni compartimos tu información personal con terceros. Tu información se utiliza exclusivamente para brindarte el servicio solicitado.
+        </p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">4. Almacenamiento y Seguridad</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Tu información se almacena de forma segura. Implementamos medidas técnicas y administrativas para proteger tus datos personales contra acceso no autorizado.
+        </p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">5. WhatsApp y Teléfono</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Al contactarnos por WhatsApp al <strong class="text-white">{config.telefonoDisplay}</strong>, aceptas que usemos esta plataforma para procesar tu solicitud. Tu número de teléfono se utilizará únicamente para coordinar el servicio.
+        </p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">6. Tus Derechos</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Puedes solicitarnos en cualquier momento:
+        </p>
+        <ul class="text-gray-300 list-disc pl-6 space-y-2 mb-4">
+          <li>Acceso a la información que tenemos sobre ti</li>
+          <li>Corrección de datos incorrectos</li>
+          <li>Eliminación de tus datos personales</li>
+          <li>Cancelación de cualquier comunicación futura</li>
+        </ul>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">7. Contacto</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Si tienes preguntas sobre esta política de privacidad, contáctanos:
+        </p>
+        <ul class="text-gray-300 list-none space-y-2 mb-4">
+          <li><strong class="text-white">Email:</strong> {config.email}</li>
+          <li><strong class="text-white">Teléfono:</strong> <a href={`tel:${config.telefonoHref}`} class="text-neon-400 hover:underline">{config.telefonoDisplay}</a></li>
+          <li><strong class="text-white">WhatsApp:</strong> <a href={`https://wa.me/${config.whatsappNumero}`} target="_blank" rel="noopener" class="text-neon-400 hover:underline">Enviar mensaje</a></li>
+        </ul>
+
+        <div class="mt-12 p-6 card-neon text-center">
+          <p class="text-sm text-gray-400 mb-4">¿Tienes preguntas sobre tu privacidad?</p>
+          <a href={`tel:${config.telefonoHref}`} class="btn-outline-neon text-sm">
+            Contáctanos: {config.telefonoDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
