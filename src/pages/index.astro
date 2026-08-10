@@ -4,11 +4,12 @@ import Hero from '@/components/Hero.astro';
 import Services from '@/components/Services.astro';
 import CitiesHighlight from '@/components/CitiesHighlight.astro';
 import CityMap from '@/components/CityMap.astro';
-import Gallery from '@/components/Gallery.astro';
+import RealGallery from '@/components/RealGallery.astro';
 import QuoteForm from '@/components/QuoteForm.astro';
 import { config, waLink } from '@/data/config';
 import { servicios } from '@/data/servicios';
 import { cities } from '@/data/cities';
+import { galeriaImagenes } from '@/data/galeria';
 
 // Schema.org para la home - AutoRepair
 const homeSchema = {
@@ -138,8 +139,15 @@ const servicesItemList = {
   <!-- Ciudades destacadas (grid de links) -->
   <CitiesHighlight />
 
-  <!-- Galería de trabajos -->
-  <Gallery />
+  <!-- Galería de trabajos reales -->
+  <RealGallery
+    limit={12}
+    offset={0}
+    titulo="Galería de Trabajos en New Jersey"
+    subtitulo={`Fotos reales de reparaciones de refrigeración comercial, HVAC, cuartos fríos, freezers, estufas y freidoras realizadas por nuestro técnico certificado EPA 608. Contamos con ${galeriaImagenes.length} fotos de trabajos reales en New Jersey.`}
+    showVerMas={true}
+    sectionId="galeria-trabajos"
+  />
 
   <!-- Sección de clientes -->
   <section class="py-12 relative">

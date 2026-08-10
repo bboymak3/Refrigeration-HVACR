@@ -1,0 +1,181 @@
+---
+import { waLink } from '@/data/config';
+import { galeriaImagenes, getImagenCaption, getImagenUrl } from '@/data/galeria';
+
+interface Props {
+  /** Cuántas imágenes mostrar. Default: 12. Si null, muestra TODAS. */
+  limit?: number | null;
+  /** Offset para empezar desde una imagen específica (rotación). Default: 0. */
+  offset?: number;
+  /** Título de la sección. Si null, no muestra título. */
+  titulo?: string | null;
+  /** Subtítulo. */
+  subtitulo?: string | null;
+  /** Si true, muestra el botón "Ver galería completa". */
+  showVerMas?: boolean;
+  /** ID del section para navegación. */
+  sectionId?: string;
+}
+
+const {
+  limit = 12,
+  offset = 0,
+  titulo = 'Galería de Trabajos',
+  subtitulo = 'Fotos reales de reparaciones de refrigeración comercial, HVAC, cuartos fríos, freezers y más realizadas por nuestro técnico certificado EPA 608 en New Jersey.',
+  showVerMas = true,
+  sectionId = 'galeria-real',
+} = Astro.props;
+
+// Filtrar imágenes según limit y offset
+const total = galeriaImagenes.length;
+let imagenesAMostrar: string[];
+if (limit === null) {
+  imagenesAMostrar = galeriaImagenes;
+} else {
+  imagenesAMostrar = [];
+  for (let i = 0; i < limit; i++) {
+    const idx = (offset + i) % total;
+    imagenesAMostrar.push(galeriaImagenes[idx]);
+  }
+}
+
+// Generar captions para cada imagen
+const items = imagenesAMostrar.map((filename, i) => ({
+  filename,
+  url: getImagenUrl(filename),
+  caption: getImagenCaption(offset + i),
+  index: offset + i,
+}));
+---
+
+<section id={sectionId} class="py-20 relative overflow-hidden">
+  <div class="container-x">
+    {titulo && (
+      <div class="text-center mb-12">
+        <span class="badge-neon mb-4">Galería</span>
+        <h2 class="section-title">{titulo}</h2>
+        {subtitulo && (
+          <p class="section-subtitle max-w-3xl mx-auto">{subtitulo}</p>
+        )}
+      </div>
+    )}
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+      {items.map((item) => (
+        <button
+          type="button"
+          class="real-gallery-item group relative aspect-square rounded-xl overflow-hidden border-2 border-neon-500/20 hover:border-neon-500/60 transition-all bg-dark-200"
+          data-full={item.url}
+          data-caption={item.caption}
+          aria-label={`Ver imagen: ${item.caption}`}
+        >
+          <img
+            src={item.url}
+            alt={item.caption}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            onerror="this.style.display='none';this.parentElement.style.backgroundColor='#0a0a0a';this.parentElement.classList.add('flex','items-center','justify-center');const s=document.createElement('span');s.textContent='📷';s.className='text-4xl opacity-40';this.parentElement.appendChild(s);"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-500/95 via-dark-300/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+            <p class="text-xs text-white font-semibold line-clamp-2">{item.caption}</p>
+          </div>
+          <div class="absolute top-2 right-2 px-2 py-1 bg-dark-300/80 backdrop-blur rounded text-[10px] text-neon-400 uppercase tracking-wide border border-neon-500/30">
+            #{item.index + 1}
+          </div>
+        </button>
+      ))}
+    </div>
+
+    {showVerMas && (
+      <div class="text-center mt-10">
+        <p class="text-sm text-gray-500 mb-4">
+          ¿Quieres ver más fotos de trabajos reales?
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/galeria/" class="btn-neon text-sm">
+            Ver galería completa ({total} fotos)
+            <svg class="w-4 h-4 inline ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a href={waLink('Hola, quiero ver más ejemplos de trabajos realizados')} target="_blank" rel="noopener" class="btn-whatsapp text-sm">
+            Solicitar más ejemplos
+          </a>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<!-- Lightbox modal -->
+<div id="real-gallery-lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-dark-500/95 backdrop-blur-sm" id="real-gallery-lightbox-overlay"></div>
+  <div class="relative max-w-4xl w-full">
+    <button id="real-gallery-lightbox-close" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-dark-200 border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 flex items-center justify-center transition-colors z-10" aria-label="Cerrar">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div id="real-gallery-lightbox-content" class="relative rounded-2xl overflow-hidden border-2 border-neon-500/40 shadow-neon-lg bg-dark-200">
+      <!-- Contenido inyectado por JS -->
+    </div>
+    <div class="flex justify-between items-center mt-4">
+      <button id="real-gallery-lightbox-prev" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label="Anterior">← Anterior</button>
+      <span id="real-gallery-lightbox-counter" class="text-sm text-gray-400"></span>
+      <button id="real-gallery-lightbox-next" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label="Siguiente">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ items: items.map(i => ({ url: i.url, caption: i.caption })) }}>
+  (function() {
+    const galleryItems = items;
+    let currentIndex = 0;
+    const modal = document.getElementById('real-gallery-lightbox');
+    const content = document.getElementById('real-gallery-lightbox-content');
+    const counter = document.getElementById('real-gallery-lightbox-counter');
+    const overlay = document.getElementById('real-gallery-lightbox-overlay');
+    const closeBtn = document.getElementById('real-gallery-lightbox-close');
+    const prevBtn = document.getElementById('real-gallery-lightbox-prev');
+    const nextBtn = document.getElementById('real-gallery-lightbox-next');
+
+    function render(index) {
+      if (!content) return;
+      const item = galleryItems[index];
+      content.innerHTML = '<img src="' + item.url + '" alt="' + item.caption + '" class="w-full max-h-[75vh] object-contain" />' +
+        '<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-dark-500/95 to-transparent">' +
+        '<p class="text-sm text-neon-400 uppercase tracking-wide mb-1">Trabajo #' + (index + 1) + '</p>' +
+        '<p class="text-base text-white font-semibold">' + item.caption + '</p>' +
+        '</div>';
+      counter.textContent = (index + 1) + ' / ' + galleryItems.length;
+    }
+
+    function openModal(index) {
+      currentIndex = index;
+      render(index);
+      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeModal() {
+      if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+    }
+    function next() { currentIndex = (currentIndex + 1) % galleryItems.length; render(currentIndex); }
+    function prev() { currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length; render(currentIndex); }
+
+    document.querySelectorAll('.real-gallery-item').forEach((el, i) => {
+      el.addEventListener('click', () => {
+        const fullUrl = el.getAttribute('data-full');
+        const idx = galleryItems.findIndex(it => it.url === fullUrl);
+        openModal(idx >= 0 ? idx : 0);
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    overlay?.addEventListener('click', closeModal);
+    nextBtn?.addEventListener('click', next);
+    prevBtn?.addEventListener('click', prev);
+    document.addEventListener('keydown', (e) => {
+      if (modal && !modal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+      }
+    });
+  })();
+</script>

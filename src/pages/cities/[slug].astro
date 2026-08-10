@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CityMap from '@/components/CityMap.astro';
+import RealGallery from '@/components/RealGallery.astro';
 import { cities } from '@/data/cities';
 import { servicios } from '@/data/servicios';
 import { config, waLink, waLinkCiudad, waLinkServicio } from '@/data/config';
@@ -407,6 +408,16 @@ const faqSchema = {
       </div>
     </div>
   </section>
+
+  <!-- Galería de fotos en esta ciudad -->
+  <RealGallery
+    limit={6}
+    offset={cities.findIndex(c => c.slug === city.slug) * 3}
+    titulo={`Galería de Trabajos en ${city.nombre}, NJ`}
+    subtitulo="Fotos reales de reparaciones de refrigeración comercial, HVAC, cuartos fríos, freezers y más realizadas por nuestro técnico certificado EPA 608 en New Jersey."
+    showVerMas={true}
+    sectionId="galeria-ciudad"
+  />
 
   <!-- CTA final -->
   <section class="py-16 relative overflow-hidden">

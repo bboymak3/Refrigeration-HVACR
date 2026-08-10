@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CityMap from '@/components/CityMap.astro';
+import RealGallery from '@/components/RealGallery.astro';
 import { servicios, getServiciosRelacionados } from '@/data/servicios';
 import { cities } from '@/data/cities';
 import { config, waLink, waLinkServicio } from '@/data/config';
+import { getImagenParaServicio, getImagenUrl } from '@/data/galeria';
 
 export function getStaticPaths() {
   return servicios.map(s => ({
@@ -13,6 +15,7 @@ export function getStaticPaths() {
 }
 
 const { servicio } = Astro.props;
+const imagenServicio = getImagenParaServicio(servicio.slug);
 const relacionados = getServiciosRelacionados(servicio.slug, 3);
 const esDestacado = servicio.destacado === true;
 
@@ -334,6 +337,16 @@ const breadcrumbSchema = {
       <CityMap />
     </div>
   </section>
+
+  <!-- Galería de fotos del servicio -->
+  <RealGallery
+    limit={6}
+    offset={servicios.findIndex(s => s.slug === servicio.slug) * 3}
+    titulo={`Galería de ${servicio.nombre}`}
+    subtitulo="Fotos reales de trabajos realizados por nuestro técnico certificado EPA 608 en New Jersey. Haz click en una foto para ampliarla."
+    showVerMas={true}
+    sectionId="galeria-servicio"
+  />
 
   <!-- CTA final -->
   <section class="py-16 relative overflow-hidden">

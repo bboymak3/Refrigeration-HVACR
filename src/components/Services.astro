@@ -1,6 +1,7 @@
 ---
 import { servicios, getServiciosDestacados, getServiciosRegulares } from '@/data/servicios';
 import { waLinkServicio } from '@/data/config';
+import { getImagenParaServicio, getImagenUrl } from '@/data/galeria';
 
 const destacados = getServiciosDestacados();
 const serviciosRegulares = getServiciosRegulares();
@@ -54,31 +55,43 @@ const serviciosRegulares = getServiciosRegulares();
 
     <!-- Grid de servicios regulares -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {serviciosRegulares.map((servicio, i) => (
+      {serviciosRegulares.map((servicio, i) => {
+        const imagen = getImagenParaServicio(servicio.slug);
+        return (
         <article class="card-neon group relative overflow-hidden">
-          <!-- Número decorativo -->
-          <div class="absolute top-4 right-4 text-6xl font-display font-bold text-neon-500/5 select-none">
-            {String(i + 1).padStart(2, '0')}
-          </div>
+          <!-- Imagen real del servicio -->
+          <a href={`/servicios/${servicio.slug}/`} class="block relative aspect-video overflow-hidden rounded-t-xl border-b border-neon-500/20">
+            <img
+              src={getImagenUrl(imagen)}
+              alt={`Foto real de ${servicio.nombre} en New Jersey`}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-400 via-dark-400/30 to-transparent"></div>
+            <div class="absolute top-2 left-2 px-2 py-1 bg-dark-300/80 backdrop-blur rounded text-[10px] text-neon-400 uppercase tracking-wide border border-neon-500/30">
+              {servicio.categoria}
+            </div>
+          </a>
 
-          <div class="relative">
-            <!-- Icono -->
-            <div class="w-14 h-14 rounded-lg bg-neon-500/10 border border-neon-500/30 flex items-center justify-center mb-4 group-hover:shadow-neon transition-shadow">
-              <span class="text-3xl">{servicio.icono}</span>
+          <div class="relative p-5">
+            <!-- Número decorativo -->
+            <div class="absolute top-4 right-4 text-6xl font-display font-bold text-neon-500/5 select-none">
+              {String(i + 1).padStart(2, '0')}
             </div>
 
-            <!-- Categoría -->
-            <div class="text-xs text-neon-400 uppercase tracking-widest font-semibold mb-2">
-              {servicio.categoria}
+            <!-- Icono -->
+            <div class="w-12 h-12 rounded-lg bg-neon-500/10 border border-neon-500/30 flex items-center justify-center mb-4 group-hover:shadow-neon transition-shadow">
+              <span class="text-2xl">{servicio.icono}</span>
             </div>
 
             <!-- Título -->
-            <h3 class="text-xl font-display font-bold text-white mb-3 group-hover:text-neon-400 transition-colors">
-              {servicio.nombre}
+            <h3 class="text-lg font-display font-bold text-white mb-3 group-hover:text-neon-400 transition-colors">
+              <a href={`/servicios/${servicio.slug}/`}>{servicio.nombre}</a>
             </h3>
 
             <!-- Descripción -->
-            <p class="text-sm text-gray-400 mb-6 line-clamp-3">
+            <p class="text-sm text-gray-400 mb-5 line-clamp-2">
               {servicio.descripcionCorta}
             </p>
 
@@ -107,7 +120,8 @@ const serviciosRegulares = getServiciosRegulares();
           <!-- Glow border on hover -->
           <div class="absolute inset-0 rounded-xl border border-neon-500/0 group-hover:border-neon-500/40 transition-colors pointer-events-none"></div>
         </article>
-      ))}
+        );
+      })}
     </div>
 
     <!-- CTA inferior -->
