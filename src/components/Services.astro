@@ -60,7 +60,7 @@ const serviciosRegulares = getServiciosRegulares();
         return (
         <article class="group relative overflow-hidden bg-dark-200 border border-neon-500/20 rounded-xl transition-all duration-300 hover:border-neon-500/60 hover:shadow-neon hover:-translate-y-1">
           <!-- Imagen real del servicio -->
-          <a href={`/servicios/${servicio.slug}/`} class="block relative aspect-video overflow-hidden rounded-t-xl border-b border-neon-500/20">
+          <a href={`/servicios/${servicio.slug}/`} class="block relative aspect-[4/3] overflow-hidden rounded-t-xl border-b border-neon-500/20">
             <img
               src={getImagenUrl(imagen)}
               alt={`Foto real de ${servicio.nombre} en New Jersey`}
