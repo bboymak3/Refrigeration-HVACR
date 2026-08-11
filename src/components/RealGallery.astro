@@ -74,12 +74,9 @@ const items = imagenesAMostrar.map((filename, i) => ({
             alt={item.caption}
             loading="lazy"
             decoding="async"
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            class="w-full h-full object-cover transition-transform duration-500"
             onerror="this.style.display='none';this.parentElement.style.backgroundColor='#0a0a0a';this.parentElement.classList.add('flex','items-center','justify-center');const s=document.createElement('span');s.textContent='📷';s.className='text-4xl opacity-40';this.parentElement.appendChild(s);"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-dark-500/95 via-dark-300/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-            <p class="text-xs text-white font-semibold line-clamp-2">{item.caption}</p>
-          </div>
           <div class="absolute top-2 right-2 px-2 py-1 bg-dark-300/80 backdrop-blur rounded text-[10px] text-neon-400 uppercase tracking-wide border border-neon-500/30">
             #{item.index + 1}
           </div>
@@ -139,8 +136,8 @@ const items = imagenesAMostrar.map((filename, i) => ({
     function render(index) {
       if (!content) return;
       const item = galleryItems[index];
-      content.innerHTML = '<img src="' + item.url + '" alt="' + item.caption + '" class="w-full max-h-[75vh] object-contain" />' +
-        '<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-dark-500/95 to-transparent">' +
+      content.innerHTML = '<img src="' + item.url + '" alt="' + item.caption + '" class="w-full max-h-[70vh] object-contain bg-dark-200" />' +
+        '<div class="p-4 text-center bg-dark-200 border-t border-neon-500/20">' +
         '<p class="text-sm text-neon-400 uppercase tracking-wide mb-1">Trabajo #' + (index + 1) + '</p>' +
         '<p class="text-base text-white font-semibold">' + item.caption + '</p>' +
         '</div>';

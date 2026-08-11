@@ -325,43 +325,6 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Galería de trabajos -->
-  <section class="py-12 relative">
-    <div class="container-x">
-      <div class="text-center mb-8">
-        <span class="badge-neon mb-3">Galería</span>
-        <h2 class="text-2xl md:text-3xl font-display font-bold text-white mb-3">
-          Galería de Trabajos en <span class="text-neon-400">{city.nombre}</span>
-        </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto text-sm">
-          Ejemplos del tipo de trabajos que realizamos en {city.nombre} y otras ciudades de New Jersey.
-        </p>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {[
-          { emoji: '❄️', titulo: 'Refrigerador Comercial', gradient: 'from-cyan-600/30 to-blue-900/40' },
-          { emoji: '🌬️', titulo: 'AC Mini-Split', gradient: 'from-sky-600/30 to-cyan-900/40' },
-          { emoji: '🏪', titulo: 'Walk-in Cooler', gradient: 'from-teal-600/30 to-cyan-900/40' },
-          { emoji: '🧊', titulo: 'Freezer Comercial', gradient: 'from-blue-600/30 to-indigo-900/40' },
-          { emoji: '🍳', titulo: 'Estufa Comercial', gradient: 'from-amber-600/30 to-orange-900/40' },
-          { emoji: '🛠️', titulo: 'Mantenimiento HVAC', gradient: 'from-cyan-600/30 to-teal-900/40' },
-        ].map((item) => (
-          <div class={`group relative aspect-square rounded-xl overflow-hidden border-2 border-neon-500/20 hover:border-neon-500/60 transition-all bg-gradient-to-br ${item.gradient}`}>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <span class="text-6xl md:text-7xl group-hover:scale-110 transition-transform duration-500">{item.emoji}</span>
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-400/95 via-dark-300/30 to-transparent flex items-end p-4">
-              <h3 class="text-sm font-display font-bold text-white">{item.titulo}</h3>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div class="text-center mt-6">
-        <a href="/galeria/" class="btn-outline-neon text-sm">Ver galería completa</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Sobre nosotros en esta ciudad -->
   <section class="py-12 relative">
     <div class="container-x">
