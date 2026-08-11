@@ -58,7 +58,7 @@ const serviciosRegulares = getServiciosRegulares();
       {serviciosRegulares.map((servicio, i) => {
         const imagen = getImagenParaServicio(servicio.slug);
         return (
-        <article class="card-neon group relative overflow-hidden">
+        <article class="group relative overflow-hidden bg-dark-200 border border-neon-500/20 rounded-xl transition-all duration-300 hover:border-neon-500/60 hover:shadow-neon hover:-translate-y-1">
           <!-- Imagen real del servicio -->
           <a href={`/servicios/${servicio.slug}/`} class="block relative aspect-video overflow-hidden rounded-t-xl border-b border-neon-500/20">
             <img
