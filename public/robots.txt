@@ -1,9 +1,8 @@
 # robots.txt - Alexandro Refrigeration HVACR
 # https://refrigeration-hvacr.com/
 
-# Sitemaps (principal + imágenes)
+# Sitemap (URLs + imágenes unificadas en un solo sitemap)
 Sitemap: https://refrigeration-hvacr.com/sitemap.xml
-Sitemap: https://refrigeration-hvacr.com/image-sitemap.xml
 
 # Permitir todo el acceso a los crawlers (incluyendo imágenes)
 User-agent: *
