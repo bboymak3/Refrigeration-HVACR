@@ -32,7 +32,7 @@ export const config = {
     garantia: '3 meses'
   },
   email: 'info@alexandrorefrigeration.com',
-  dominio: 'https://refrigeration-hvacr.pages.dev',
+  dominio: 'https://refrigeration-hvacr.com',
   clientesTipicos: ['restaurantes', 'hoteles', 'supermercados', 'licorerías', 'cafeterías'],
 };
 

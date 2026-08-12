@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://refrigeration-hvacr.pages.dev',
+  site: 'https://refrigeration-hvacr.com',
   integrations: [tailwind({ applyBaseStyles: false })],
   build: {
     inlineStylesheets: 'auto',
