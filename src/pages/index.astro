@@ -120,23 +120,6 @@ const servicesItemList = {
   <!-- Grid de Servicios -->
   <Services lang="en" />
 
-  <!-- Mapa interactivo de ciudades NJ -->
-  <section class="py-16 relative overflow-hidden">
-    <div class="absolute inset-0 bg-grid opacity-10"></div>
-    <div class="container-x relative">
-      <div class="text-center mb-8">
-        <span class="badge-neon mb-3">Coverage</span>
-        <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-3">
-          Where We <span class="text-neon-400 glow-text">Serve</span>
-        </h2>
-        <p class="text-white max-w-2xl mx-auto text-sm">
-          Interactive map of the {citiesEn.length} cities where we offer refrigeration and HVAC service. Click a marker to view that city's landing page.
-        </p>
-      </div>
-      <CityMap lang="en" />
-    </div>
-  </section>
-
   <!-- Ciudades destacadas (grid de links) -->
   <CitiesHighlight lang="en" />
 
@@ -228,7 +211,23 @@ const servicesItemList = {
     </div>
   </section>
 
-  <!-- Formulario de cotización -->
+  <!-- Mapa interactivo de áreas de servicio (movido al final, antes del footer) -->
+  <section class="py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-10"></div>
+    <div class="container-x relative">
+      <div class="text-center mb-8">
+        <span class="badge-neon mb-3">Coverage</span>
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-3">
+          Where We <span class="text-neon-400 glow-text">Serve</span>
+        </h2>
+        <p class="text-white max-w-2xl mx-auto text-sm">
+          Interactive map of the {citiesEn.length} cities where we offer refrigeration and HVAC service. Click a marker to view that city's landing page.
+        </p>
+      </div>
+      <CityMap lang="en" />
+    </div>
+  </section>
+
   <!-- Freezer Repair + Appliance Repair + Brands Section -->
   <FreezerRepairSection lang="en" />
 
