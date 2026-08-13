@@ -1,5 +1,26 @@
 ---
 import { config } from '@/data/config';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'es-US' } = Astro.props;
+const isEn = lang === 'en';
+
+const t = {
+  badge: isEn ? 'Federal Certification' : 'Certificación Federal',
+  titlePre: isEn ? 'EPA' : 'de la',
+  titlePost: isEn ? '' : 'EPA',
+  titleLead: isEn ? 'EPA 608' : 'Licencia 608 de la',
+  titleTail: isEn ? 'Certification' : '',
+  description: isEn
+    ? 'Our lead technician is certified by the Environmental Protection Agency (EPA) under Section 608 of the Clean Air Act. This allows us to purchase, handle and recharge refrigerant gas legally in the United States — a mandatory federal requirement for any professional refrigeration and HVAC work.'
+    : 'Nuestro técnico principal está certificado por la Environmental Protection Agency (EPA) bajo la Sección 608 del Clean Air Act. Esto nos permite comprar, manejar y recargar gas refrigerante legalmente en Estados Unidos — un requisito federal obligatorio para cualquier trabajo profesional de refrigeración y HVAC.',
+  badges: isEn
+    ? ['✓ Legal refrigerant handling', '✓ Federal compliance', '✓ Guaranteed safety']
+    : ['✓ Manejo legal de refrigerante', '✓ Cumplimiento federal', '✓ Seguridad garantizada'],
+};
 ---
 
 <!-- EPA 608 License Badge - prominently displayed -->
@@ -13,17 +34,17 @@ import { config } from '@/data/config';
           </div>
         </div>
         <div class="flex-1">
-          <div class="badge-neon mb-3">Certificación Federal</div>
+          <div class="badge-neon mb-3">{t.badge}</div>
           <h3 class="text-xl md:text-2xl font-display font-bold text-white mb-2">
-            Licencia 608 de la <span class="text-neon-400 glow-text">EPA</span>
+            {isEn ? (
+              <><span class="text-neon-400 glow-text">EPA 608</span> Certification</>
+            ) : (
+              <>Licencia 608 de la <span class="text-neon-400 glow-text">EPA</span></>
+            )}
           </h3>
-          <p class="text-sm md:text-base text-white mb-4">
-            Nuestro técnico principal está certificado por la Environmental Protection Agency (EPA) bajo la Sección 608 del Clean Air Act. Esto nos permite comprar, manejar y recargar gas refrigerante legalmente en Estados Unidos — un requisito federal obligatorio para cualquier trabajo profesional de refrigeración y HVAC.
-          </p>
+          <p class="text-sm md:text-base text-white mb-4">{t.description}</p>
           <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-            <span class="badge-neon">✓ Manejo legal de refrigerante</span>
-            <span class="badge-neon">✓ Cumplimiento federal</span>
-            <span class="badge-neon">✓ Seguridad garantizada</span>
+            {t.badges.map(b => <span class="badge-neon">{b}</span>)}
           </div>
         </div>
       </div>

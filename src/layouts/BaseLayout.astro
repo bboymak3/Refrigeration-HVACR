@@ -8,6 +8,7 @@ import GoogleReviewsModal from '@/components/GoogleReviewsModal.astro';
 import EpaLicenseBadge from '@/components/EpaLicenseBadge.astro';
 import Analytics from '@/components/Analytics.astro';
 import { config } from '@/data/config';
+import { configEn } from '@/data/config-en';
 
 interface Props {
   title?: string;
@@ -17,11 +18,13 @@ interface Props {
   skipBreadcrumb?: boolean;
   skipAutoRepair?: boolean;
   skipEpaBadge?: boolean;
+  lang?: string;
 }
 
 const {
-  title = `${config.marcaLarga} | Refrigeration & HVAC Repair in New Jersey`,
-  description = 'Refrigeration & HVAC Repair in New Jersey. Reparación de refrigeración comercial, AC, cuartos fríos, freezers, hornos y freidoras. Licencia EPA 608, garantía 3 meses. WhatsApp 937-450-0421.',
+  lang = 'es-US',
+  title,
+  description,
   ogImage = '/images/Refrigeration-HVAC-Repair-in-New-Jersey-logo.webp',
   canonical,
   skipBreadcrumb = false,
@@ -29,26 +32,42 @@ const {
   skipEpaBadge = false,
 } = Astro.props;
 
-const currentUrl = canonical || Astro.url.pathname;
-const fullUrl = new URL(currentUrl, config.dominio).toString();
-const ogImageUrl = new URL(ogImage, config.dominio).toString();
+const isEn = lang === 'en';
 
-const pageTitle = title.split('|')[0].trim();
+const defaultTitle = isEn
+  ? `${configEn.marcaLarga} | Refrigeration & HVAC Repair in New Jersey`
+  : `${config.marcaLarga} | Refrigeration & HVAC Repair in New Jersey`;
+const finalTitle = title || defaultTitle;
+
+const defaultDescription = isEn
+  ? 'Refrigeration & HVAC Repair in New Jersey. Commercial refrigeration, AC, walk-in coolers, freezers, ovens and fryers repair. EPA 608 certified, 3-month warranty. WhatsApp 937-450-0421.'
+  : 'Refrigeration & HVAC Repair in New Jersey. Reparación de refrigeración comercial, AC, cuartos fríos, freezers, hornos y freidoras. Licencia EPA 608, garantía 3 meses. WhatsApp 937-450-0421.';
+const finalDescription = description || defaultDescription;
+
+const activeConfig = isEn ? configEn : config;
+
+const currentUrl = canonical || Astro.url.pathname;
+const fullUrl = new URL(currentUrl, activeConfig.dominio).toString();
+const ogImageUrl = new URL(ogImage, activeConfig.dominio).toString();
+
+const pageTitle = finalTitle.split('|')[0].trim();
+const htmlLang = isEn ? 'en' : 'es-US';
+const ogLocale = isEn ? 'en_US' : 'es_US';
 ---
 
 <!doctype html>
-<html lang="es-US">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
+    <title>{finalTitle}</title>
+    <meta name="title" content={finalTitle} />
+    <meta name="description" content={finalDescription} />
     <meta name="keywords" content="commercial refrigeration repair, newark cooler repair, newark hvac repairs, refrigeration newark nj bloomfield ave, hvac repair nj, refrigeration repair nj" />
-    <meta name="author" content={config.marca} />
+    <meta name="author" content={activeConfig.marca} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href={fullUrl} />
 
@@ -58,21 +77,21 @@ const pageTitle = title.split('|')[0].trim();
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={fullUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:secure_url" content={ogImageUrl} />
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
-    <meta property="og:locale" content="es_US" />
-    <meta property="og:site_name" content={config.marca} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:site_name" content={activeConfig.marca} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={fullUrl} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Favicon completo (todos los formatos) -->
@@ -84,8 +103,8 @@ const pageTitle = title.split('|')[0].trim();
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="apple-mobile-web-app-title" content={config.marca} />
-    <meta name="application-name" content={config.marca} />
+    <meta name="apple-mobile-web-app-title" content={activeConfig.marca} />
+    <meta name="application-name" content={activeConfig.marca} />
     <meta name="msapplication-TileColor" content="#00d4ff" />
     <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
     <meta name="theme-color" content="#00d4ff" />
@@ -99,13 +118,15 @@ const pageTitle = title.split('|')[0].trim();
       <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "AutoRepair",
-        "name": config.marcaLarga,
-        "alternateName": config.marca,
+        "name": activeConfig.marcaLarga,
+        "alternateName": activeConfig.marca,
         "image": ogImage,
-        "description": "Refrigeration & HVAC Repair in New Jersey, USA. Reparación de refrigeración comercial, AC, cuartos fríos, freezers, hornos y freidoras. Licencia EPA 608.",
-        "url": config.dominio,
-        "telephone": config.telefonoDisplay,
-        "email": config.email,
+        "description": isEn
+          ? "Refrigeration & HVAC Repair in New Jersey, USA. Commercial refrigeration, AC, walk-in coolers, freezers, ovens and fryers repair. EPA 608 certified."
+          : "Refrigeration & HVAC Repair in New Jersey, USA. Reparación de refrigeración comercial, AC, cuartos fríos, freezers, hornos y freidoras. Licencia EPA 608.",
+        "url": activeConfig.dominio,
+        "telephone": activeConfig.telefonoDisplay,
+        "email": activeConfig.email,
         "address": {
           "@type": "PostalAddress",
           "addressRegion": "NJ",
@@ -114,7 +135,7 @@ const pageTitle = title.split('|')[0].trim();
         "areaServed": "New Jersey, USA",
         "openingHours": "Mo-Sa 08:00-20:00",
         "priceRange": "$$",
-        "sameAs": [config.googleUrl]
+        "sameAs": [activeConfig.googleUrl]
       })} />
     )}
 
@@ -127,8 +148,8 @@ const pageTitle = title.split('|')[0].trim();
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Inicio",
-            "item": `${config.dominio}/`
+            "name": isEn ? "Home" : "Inicio",
+            "item": isEn ? `${activeConfig.dominio}/en/` : `${activeConfig.dominio}/`
           },
           {
             "@type": "ListItem",
@@ -157,14 +178,14 @@ const pageTitle = title.split('|')[0].trim();
     <!-- End Google tag (gtag.js) -->
   </head>
   <body class="min-h-screen flex flex-col pt-16 md:pt-20 pb-16 md:pb-0">
-    <Header />
+    <Header lang={lang} />
     <main class="flex-1">
       <slot />
     </main>
-    {!skipEpaBadge && <EpaLicenseBadge />}
-    <Footer />
-    <WhatsAppCTA />
-    <BottomNav />
+    {!skipEpaBadge && <EpaLicenseBadge lang={lang} />}
+    <Footer lang={lang} />
+    <WhatsAppCTA lang={lang} />
+    <BottomNav lang={lang} />
     <GoogleReviewsModal />
     <Analytics />
   </body>

@@ -14,7 +14,7 @@ function escapeXml(unsafe: string): string {
     .replace(/'/g, '&apos;');
 }
 
-// Páginas estáticas con trailing slash
+// Páginas estáticas con trailing slash (Español + Inglés)
 const staticPages = [
   '/',
   '/servicios/',
@@ -23,12 +23,23 @@ const staticPages = [
   '/quienes-somos/',
   '/contacto/',
   '/politica-privacidad/',
+  // English pages
+  '/en/',
+  '/en/services/',
+  '/en/cities/',
+  '/en/gallery/',
+  '/en/about/',
+  '/en/contact/',
+  '/en/privacy-policy/',
 ];
 
 const servicioPages = servicios.map(s => `/servicios/${s.slug}/`);
 const cityPages = cities.map(c => `/cities/${c.slug}/`);
+// English service + city pages
+const servicioPagesEn = servicios.map(s => `/en/services/${s.slug}/`);
+const cityPagesEn = cities.map(c => `/en/cities/${c.slug}/`);
 
-const allPages = [...staticPages, ...servicioPages, ...cityPages];
+const allPages = [...staticPages, ...servicioPages, ...cityPages, ...servicioPagesEn, ...cityPagesEn];
 
 const lastmod = new Date().toISOString().split('T')[0];
 const logoUrl = `${config.dominio}/images/Refrigeration-HVAC-Repair-in-New-Jersey-logo.webp`;

@@ -1,5 +1,6 @@
 ---
 import { waLink } from '@/data/config';
+import { waLinkEn } from '@/data/config-en';
 import { galeriaImagenes, getImagenCaption, getImagenUrl } from '@/data/galeria';
 
 interface Props {
@@ -15,16 +16,44 @@ interface Props {
   showVerMas?: boolean;
   /** ID del section para navegación. */
   sectionId?: string;
+  /** Idioma para los textos y enlaces. */
+  lang?: string;
 }
 
 const {
   limit = 12,
   offset = 0,
-  titulo = 'Galería de Trabajos',
-  subtitulo = 'Fotos reales de reparaciones de refrigeración comercial, HVAC, cuartos fríos, freezers y más realizadas por nuestro técnico certificado EPA 608 en New Jersey.',
+  titulo,
+  subtitulo,
   showVerMas = true,
   sectionId = 'galeria-real',
+  lang = 'es-US',
 } = Astro.props;
+
+const isEn = lang === 'en';
+
+const defaultTitulo = isEn ? 'Work Gallery' : 'Galería de Trabajos';
+const defaultSubtitulo = isEn
+  ? 'Real photos of commercial refrigeration, HVAC, walk-in coolers, freezers and more repairs done by our EPA 608 certified technician in New Jersey.'
+  : 'Fotos reales de reparaciones de refrigeración comercial, HVAC, cuartos fríos, freezers y más realizadas por nuestro técnico certificado EPA 608 en New Jersey.';
+
+const finalTitulo = titulo === null ? null : (titulo || defaultTitulo);
+const finalSubtitulo = subtitulo === null ? null : (subtitulo || defaultSubtitulo);
+
+const galleryLink = isEn ? '/en/gallery/' : '/galeria/';
+const badgeText = isEn ? 'Gallery' : 'Galería';
+const morePhotosText = isEn ? 'Want to see more photos of real work?' : '¿Quieres ver más fotos de trabajos reales?';
+const viewFullText = isEn ? `View full gallery (${galeriaImagenes.length} photos)` : `Ver galería completa (${galeriaImagenes.length} fotos)`;
+const requestExamples = isEn ? 'Request more examples' : 'Solicitar más ejemplos';
+const waLinkFn = isEn ? waLinkEn : waLink;
+const requestExamplesMsg = isEn
+  ? 'Hello, I want to see more examples of completed work'
+  : 'Hola, quiero ver más ejemplos de trabajos realizados';
+const closeAria = isEn ? 'Close' : 'Cerrar';
+const prevLabel = isEn ? '← Previous' : '← Anterior';
+const nextLabel = isEn ? 'Next →' : 'Siguiente →';
+const workLabel = isEn ? 'Work #' : 'Trabajo #';
+const viewImageLabel = isEn ? 'View image' : 'Ver imagen';
 
 // Filtrar imágenes según limit y offset
 const total = galeriaImagenes.length;
@@ -50,12 +79,12 @@ const items = imagenesAMostrar.map((filename, i) => ({
 
 <section id={sectionId} class="py-20 relative overflow-hidden">
   <div class="container-x">
-    {titulo && (
+    {finalTitulo && (
       <div class="text-center mb-12">
-        <span class="badge-neon mb-4">Galería</span>
-        <h2 class="section-title">{titulo}</h2>
-        {subtitulo && (
-          <p class="section-subtitle max-w-3xl mx-auto">{subtitulo}</p>
+        <span class="badge-neon mb-4">{badgeText}</span>
+        <h2 class="section-title">{finalTitulo}</h2>
+        {finalSubtitulo && (
+          <p class="section-subtitle max-w-3xl mx-auto">{finalSubtitulo}</p>
         )}
       </div>
     )}
@@ -67,7 +96,7 @@ const items = imagenesAMostrar.map((filename, i) => ({
           class="real-gallery-item group relative aspect-square rounded-xl overflow-hidden border-2 border-neon-500/20 hover:border-neon-500/60 transition-all bg-dark-200"
           data-full={item.url}
           data-caption={item.caption}
-          aria-label={`Ver imagen: ${item.caption}`}
+          aria-label={`${viewImageLabel}: ${item.caption}`}
         >
           <img
             src={item.url}
@@ -86,16 +115,14 @@ const items = imagenesAMostrar.map((filename, i) => ({
 
     {showVerMas && (
       <div class="text-center mt-10">
-        <p class="text-sm text-white mb-4">
-          ¿Quieres ver más fotos de trabajos reales?
-        </p>
+        <p class="text-sm text-white mb-4">{morePhotosText}</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="/galeria/" class="btn-neon text-sm">
-            Ver galería completa ({total} fotos)
+          <a href={galleryLink} class="btn-neon text-sm">
+            {viewFullText}
             <svg class="w-4 h-4 inline ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
-          <a href={waLink('Hola, quiero ver más ejemplos de trabajos realizados')} target="_blank" rel="noopener" class="btn-whatsapp text-sm">
-            Solicitar más ejemplos
+          <a href={waLinkFn(requestExamplesMsg)} target="_blank" rel="noopener" class="btn-whatsapp text-sm">
+            {requestExamples}
           </a>
         </div>
       </div>
@@ -107,21 +134,21 @@ const items = imagenesAMostrar.map((filename, i) => ({
 <div id="real-gallery-lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
   <div class="absolute inset-0 bg-dark-500/95 backdrop-blur-sm" id="real-gallery-lightbox-overlay"></div>
   <div class="relative max-w-4xl w-full">
-    <button id="real-gallery-lightbox-close" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-dark-200 border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 flex items-center justify-center transition-colors z-10" aria-label="Cerrar">
+    <button id="real-gallery-lightbox-close" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-dark-200 border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 flex items-center justify-center transition-colors z-10" aria-label={closeAria}>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <div id="real-gallery-lightbox-content" class="relative rounded-2xl overflow-hidden border-2 border-neon-500/40 shadow-neon-lg bg-dark-200">
       <!-- Contenido inyectado por JS -->
     </div>
     <div class="flex justify-between items-center mt-4">
-      <button id="real-gallery-lightbox-prev" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label="Anterior">← Anterior</button>
+      <button id="real-gallery-lightbox-prev" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label={prevLabel}>{prevLabel}</button>
       <span id="real-gallery-lightbox-counter" class="text-sm text-white"></span>
-      <button id="real-gallery-lightbox-next" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label="Siguiente">Siguiente →</button>
+      <button id="real-gallery-lightbox-next" class="px-4 py-2 rounded-lg border border-neon-500/30 text-neon-400 hover:bg-neon-500 hover:text-dark-500 transition-colors text-sm" aria-label={nextLabel}>{nextLabel}</button>
     </div>
   </div>
 </div>
 
-<script is:inline define:vars={{ items: items.map(i => ({ url: i.url, caption: i.caption })) }}>
+<script is:inline define:vars={{ items: items.map(i => ({ url: i.url, caption: i.caption })), workLabel }}>
   (function() {
     const galleryItems = items;
     let currentIndex = 0;
@@ -138,7 +165,7 @@ const items = imagenesAMostrar.map((filename, i) => ({
       const item = galleryItems[index];
       content.innerHTML = '<img src="' + item.url + '" alt="' + item.caption + '" class="w-full max-h-[70vh] object-contain bg-dark-200" />' +
         '<div class="p-4 text-center bg-dark-200 border-t border-neon-500/20">' +
-        '<p class="text-sm text-neon-400 uppercase tracking-wide mb-1">Trabajo #' + (index + 1) + '</p>' +
+        '<p class="text-sm text-neon-400 uppercase tracking-wide mb-1">' + workLabel + (index + 1) + '</p>' +
         '<p class="text-base text-white font-semibold">' + item.caption + '</p>' +
         '</div>';
       counter.textContent = (index + 1) + ' / ' + galleryItems.length;

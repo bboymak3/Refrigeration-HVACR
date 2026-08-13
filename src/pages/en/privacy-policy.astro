@@ -1,0 +1,69 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { configEn } from '@/data/config-en';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${configEn.dominio}/en/` },
+    { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": `${configEn.dominio}/en/privacy-policy/` }
+  ]
+};
+---
+
+<BaseLayout
+  lang="en"
+  title="Privacy Policy | Alexandro HVACR"
+  description="Privacy policy for Alexandro Refrigeration HVACR website."
+  canonical="/en/privacy-policy/"
+  skipBreadcrumb={true}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <section class="relative pt-12 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="container-x relative">
+      <nav class="flex items-center gap-2 text-xs text-white mb-8">
+        <a href="/en/" class="hover:text-neon-400 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-neon-400">Privacy Policy</span>
+      </nav>
+      <h1 class="text-3xl md:text-4xl font-display font-extrabold text-[#4267B2] mb-6">
+        Privacy <span class="text-neon-400">Policy</span>
+      </h1>
+
+      <div class="max-w-4xl prose prose-invert prose-lg">
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">1. Information We Collect</h2>
+        <p class="text-white leading-relaxed mb-4">
+          We collect information that you provide when you contact us through our website, including your name, phone number, email, and any details about the service you need. We do not collect sensitive personal information unless you voluntarily provide it.
+        </p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">2. How We Use Your Information</h2>
+        <p class="text-white leading-relaxed mb-4">
+          We use the information you provide to respond to your inquiries, schedule service visits, provide quotes, and deliver our refrigeration and HVAC repair services. We do not sell or rent your personal information to third parties.
+        </p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">3. Cookies and Analytics</h2>
+        <p class="text-white leading-relaxed mb-4">
+          We use Google Analytics 4 to analyze website traffic and understand how visitors use our site. This helps us improve our services. Google Analytics collects anonymous data such as pages visited, time on site, and general location. We do not use cookies for advertising.
+        </p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">4. Data Security</h2>
+        <p class="text-white leading-relaxed mb-4">
+          We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, loss, or destruction. Your data is stored securely and only accessible to authorized personnel.
+        </p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">5. Your Rights</h2>
+        <p class="text-white leading-relaxed mb-4">
+          You have the right to access, correct, or delete your personal information. If you wish to exercise these rights or have questions about our privacy practices, please contact us at {configEn.email}.
+        </p>
+
+        <h2 class="text-xl font-display font-bold text-neon-400 mt-8 mb-3">6. Contact</h2>
+        <p class="text-white leading-relaxed">
+          For any questions regarding this privacy policy, contact us at: <strong class="text-neon-400">{configEn.email}</strong> or call <strong class="text-neon-400">{configEn.telefonoDisplay}</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

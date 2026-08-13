@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RealGallery from '@/components/RealGallery.astro';
+import { configEn, waLinkEn } from '@/data/config-en';
+import { galeriaImagenes, getImagenUrl, getImagenCaption } from '@/data/galeria';
+
+// Schema.org: ImageGallery + BreadcrumbList
+const imageGallerySchema = {
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "Refrigeration & HVAC Work Gallery in New Jersey",
+  "description": `Gallery with ${galeriaImagenes.length} real photos of commercial refrigeration, HVAC, walk-in coolers, freezers, stoves and fryers repair work done by Alexandro Refrigeration HVACR in New Jersey.`,
+  "url": `${configEn.dominio}/en/gallery/`,
+  "image": galeriaImagenes.slice(0, 10).map((filename, i) => ({
+    "@type": "ImageObject",
+    "contentUrl": `${configEn.dominio}${getImagenUrl(filename)}`,
+    "url": `${configEn.dominio}${getImagenUrl(filename)}`,
+    "name": getImagenCaption(i),
+    "caption": getImagenCaption(i),
+    "creditText": "Alexandro Refrigeration HVACR",
+    "creator": {
+      "@type": "Organization",
+      "name": "Alexandro Refrigeration HVACR",
+      "url": configEn.dominio
+    }
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${configEn.dominio}/en/` },
+    { "@type": "ListItem", "position": 2, "name": "Gallery", "item": `${configEn.dominio}/en/gallery/` }
+  ]
+};
+
+// ItemList con todas las imágenes
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Photos of refrigeration and HVAC work in New Jersey",
+  "numberOfItems": galeriaImagenes.length,
+  "itemListElement": galeriaImagenes.map((filename, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "url": `${configEn.dominio}${getImagenUrl(filename)}`,
+    "name": getImagenCaption(i)
+  }))
+};
+---
+
+<BaseLayout
+  lang="en"
+  title={`Gallery of ${galeriaImagenes.length} Jobs in NJ | Alexandro HVACR`}
+  description="Complete gallery with real photos of commercial refrigeration, HVAC, walk-in coolers, freezers, stoves and fryers repair work done by our EPA 608 certified technician in New Jersey."
+  canonical="/en/gallery/"
+  skipBreadcrumb={true}
+  skipAutoRepair={true}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(imageGallerySchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+
+  <!-- HERO -->
+  <section class="relative pt-12 pb-8 overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="absolute top-0 left-0 w-96 h-96 bg-neon-500/10 rounded-full blur-3xl"></div>
+
+    <div class="container-x relative">
+      <nav class="flex items-center gap-2 text-xs text-white mb-8">
+        <a href="/en/" class="hover:text-neon-400 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-neon-400">Gallery</span>
+      </nav>
+
+      <div class="text-center max-w-4xl mx-auto">
+        <span class="badge-neon mb-4">Full Gallery</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[#4267B2] mb-6 leading-tight text-balance">
+          <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Refrigeration & HVAC</span> Work in NJ
+        </h1>
+        <p class="text-lg md:text-xl text-white mb-8 leading-relaxed">
+          Gallery with <strong class="text-neon-400">{galeriaImagenes.length} real photos</strong> of repair, maintenance and installation work done in New Jersey. Includes commercial refrigeration, air conditioning, walk-in coolers, freezers, stoves, ovens and fryers.
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center text-sm">
+          <span class="badge-neon">✓ EPA 608 Certified</span>
+          <span class="badge-neon">✓ 3-month warranty</span>
+          <span class="badge-neon">✓ 10 NJ cities</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería completa con TODAS las imágenes -->
+  <RealGallery
+    lang="en"
+    limit={null}
+    offset={0}
+    titulo={null}
+    subtitulo={null}
+    showVerMas={false}
+    sectionId="galeria-completa"
+  />
+
+  <!-- CTA -->
+  <section class="py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-dark-400 via-dark-300 to-dark-400"></div>
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="container-x relative text-center">
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-4">
+        Do you need a <span class="text-neon-400 glow-text">similar</span> job?
+      </h2>
+      <p class="text-white mb-8 max-w-2xl mx-auto">
+        Message us on WhatsApp and coordinate your visit. We serve 10 cities in New Jersey with EPA 608 certified technician and 3-month warranty.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={waLinkEn('Hello, I saw the gallery and need similar work')} target="_blank" rel="noopener" class="btn-whatsapp">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          WhatsApp: {configEn.telefonoDisplay}
+        </a>
+        <a href="/en/services/" class="btn-outline-neon">View services</a>
+        <a href="/en/cities/" class="btn-outline-neon">View cities</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

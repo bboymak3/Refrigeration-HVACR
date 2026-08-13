@@ -1,13 +1,25 @@
 ---
-import { waLink } from '@/data/config';
+import { config, waLink } from '@/data/config';
+import { configEn, waLinkEn } from '@/data/config-en';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'es-US' } = Astro.props;
+const isEn = lang === 'en';
+
+const waLinkFn = isEn ? waLinkEn : waLink;
+const ariaLabel = isEn ? 'Message us on WhatsApp' : 'Escríbenos por WhatsApp';
+const tooltipText = isEn ? 'Message us on WhatsApp' : 'Escríbenos por WhatsApp';
 ---
 
 <!-- WhatsApp Floating CTA -->
 <a
-  href={waLink()}
+  href={waLinkFn()}
   target="_blank"
   rel="noopener"
-  aria-label="Escríbenos por WhatsApp"
+  aria-label={ariaLabel}
   class="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group"
 >
   <div class="relative">
@@ -21,7 +33,7 @@ import { waLink } from '@/data/config';
     </div>
     <!-- Tooltip -->
     <div class="absolute right-full top-1/2 -translate-y-1/2 mr-3 px-3 py-2 bg-dark-200 border border-neon-500/30 rounded-lg text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none hidden md:block">
-      Escríbenos por WhatsApp
+      {tooltipText}
       <div class="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-dark-200"></div>
     </div>
   </div>

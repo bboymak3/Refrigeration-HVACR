@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { configEn, waLinkEn } from '@/data/config-en';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${configEn.dominio}/en/` },
+    { "@type": "ListItem", "position": 2, "name": "About Us", "item": `${configEn.dominio}/en/about/` }
+  ]
+};
+---
+
+<BaseLayout
+  lang="en"
+  title="About Us | Alexandro HVACR"
+  description="Learn about Alexandro Refrigeration HVAC Parts & Repair Services - EPA 608 certified technician serving New Jersey with professional refrigeration and HVAC repair."
+  canonical="/en/about/"
+  skipBreadcrumb={true}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <section class="relative pt-12 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="absolute top-0 left-0 w-96 h-96 bg-neon-500/10 rounded-full blur-3xl"></div>
+    <div class="container-x relative">
+      <nav class="flex items-center gap-2 text-xs text-white mb-8">
+        <a href="/en/" class="hover:text-neon-400 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-neon-400">About Us</span>
+      </nav>
+      <div class="text-center max-w-4xl mx-auto">
+        <span class="badge-neon mb-4">About Us</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[#4267B2] mb-6 leading-tight text-balance">
+          About <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Alexandro HVACR</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white mb-8 leading-relaxed">
+          Welcome to the leading repair company <strong class="text-neon-400">Alexandro Refrigeration HVAC Parts & Repair Services</strong>. Your trusted partner for all your Commercial Refrigeration, Residential, Cold Rooms, Freezers, and Air Conditioning, Heating, Stoves, Ovens and Fryers repair needs in New Jersey.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 relative">
+    <div class="container-x">
+      <div class="max-w-4xl mx-auto prose prose-invert prose-lg">
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-4">
+          Our <span class="text-neon-400">Story</span>
+        </h2>
+        <p class="text-white leading-relaxed mb-4">
+          My passion for refrigeration began as a helper, which motivated me to study and obtain the <strong class="text-neon-400">EPA 608 License</strong> as a Refrigeration and Air Conditioning Technician. This constant preparation led me to start my own business and register Alexandro Refrigeration HVAC Repair Services, offering high-quality services in New Jersey.
+        </p>
+        <p class="text-white leading-relaxed mb-4">
+          At Alexandro Refrigeration HVAC Repair Services, we understand the importance of finding an honest, responsible company with professional ethics. We strive to be punctual and offer warranty on our repair services. We prioritize calls where urgent repair is needed to prevent food spoilage.
+        </p>
+        <p class="text-white leading-relaxed">
+          We differentiate ourselves by our integral responsibility in every service, punctuality, seriousness and professional ethics. We offer a <strong class="text-neon-400">3-month warranty</strong> on all our repair work, ensuring customer satisfaction in New Jersey.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-10"></div>
+    <div class="container-x relative">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-4">
+          Ready to <span class="text-neon-400 glow-text">Schedule</span> a Visit?
+        </h2>
+        <p class="text-white mb-8 max-w-2xl mx-auto">
+          Contact us today to experience the difference our professionalism, honesty and responsibility can make.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href={waLinkEn()} target="_blank" rel="noopener" class="btn-whatsapp">
+            WhatsApp: {configEn.telefonoDisplay}
+          </a>
+          <a href="/en/contact/" class="btn-outline-neon">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
