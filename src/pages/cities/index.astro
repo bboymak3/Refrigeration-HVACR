@@ -1,22 +1,22 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CityMap from '@/components/CityMap.astro';
-import { cities } from '@/data/cities';
-import { config, waLink } from '@/data/config';
+import { citiesEn } from '@/data/cities-en';
+import { configEn, waLinkEn } from '@/data/config-en';
 
-const pageTitle = 'Ciudades de Cobertura en New Jersey';
+const pageTitle = 'Coverage Cities in New Jersey';
 
 // Schema: ItemList de ciudades
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "Ciudades de cobertura en New Jersey",
-  "description": "10 ciudades de New Jersey donde Alexandro Refrigeration HVACR ofrece servicio de refrigeración y HVAC.",
-  "itemListElement": cities.map((c, i) => ({
+  "name": "Coverage cities in New Jersey",
+  "description": "10 cities in New Jersey where Alexandro Refrigeration HVACR offers refrigeration and HVAC service.",
+  "itemListElement": citiesEn.map((c, i) => ({
     "@type": "ListItem",
     "position": i + 1,
     "name": `${c.nombre}, NJ`,
-    "url": `${config.dominio}/cities/${c.slug}/`
+    "url": `${configEn.dominio}/en/cities/${c.slug}/`
   }))
 };
 
@@ -25,15 +25,16 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${config.dominio}/` },
-    { "@type": "ListItem", "position": 2, "name": "Ciudades", "item": `${config.dominio}/cities/` }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${configEn.dominio}/en/` },
+    { "@type": "ListItem", "position": 2, "name": "Cities", "item": `${configEn.dominio}/en/cities/` }
   ]
 };
 ---
 
 <BaseLayout
-  title="Ciudades de Cobertura en New Jersey | Alexandro HVACR"
-  description="Atendemos 10 ciudades de New Jersey con servicio de refrigeración comercial y HVAC. Newark, Kearny, Clifton, Passaic, Jersey City y más. Licencia EPA 608. WhatsApp 937-450-0421."
+  lang="en"
+  title="Coverage Cities in New Jersey | Alexandro HVACR"
+  description="We serve 10 cities in New Jersey with commercial refrigeration and HVAC service. Newark, Kearny, Clifton, Passaic, Jersey City and more. EPA 608 certified. WhatsApp 937-450-0421."
   canonical="/cities/"
   skipBreadcrumb={true}
 >
@@ -47,31 +48,31 @@ const breadcrumbSchema = {
 
     <div class="container-x relative">
       <nav class="flex items-center gap-2 text-xs text-white mb-8">
-        <a href="/" class="hover:text-neon-400 transition-colors">Inicio</a>
+        <a href="/" class="hover:text-neon-400 transition-colors">Home</a>
         <span>/</span>
-        <span class="text-neon-400">Ciudades</span>
+        <span class="text-neon-400">Cities</span>
       </nav>
 
       <div class="text-center max-w-4xl mx-auto">
-        <span class="badge-neon mb-4">Cobertura</span>
+        <span class="badge-neon mb-4">Coverage</span>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[#4267B2] mb-6 leading-tight text-balance">
-          Ciudades que <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Cubrimos</span>
+          Cities We <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Cover</span>
         </h1>
         <p class="text-lg md:text-xl text-white mb-8 leading-relaxed">
-          Atendemos <strong class="text-neon-400">{cities.length} ciudades de New Jersey</strong> con servicio profesional de refrigeración comercial y HVAC. Técnico certificado EPA 608, garantía de 3 meses.
+          We serve <strong class="text-neon-400">{citiesEn.length} cities in New Jersey</strong> with professional commercial refrigeration and HVAC service. EPA 608 certified technician, 3-month warranty.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href={waLink()} target="_blank" rel="noopener" class="btn-whatsapp">
+          <a href={waLinkEn()} target="_blank" rel="noopener" class="btn-whatsapp">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
-            WhatsApp: {config.telefonoDisplay}
+            WhatsApp: {configEn.telefonoDisplay}
           </a>
-          <a href={`tel:${config.telefonoHref}`} class="btn-outline-neon">
+          <a href={`tel:${configEn.telefonoHref}`} class="btn-outline-neon">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
             </svg>
-            Llamar
+            Call
           </a>
         </div>
       </div>
@@ -83,15 +84,15 @@ const breadcrumbSchema = {
     <div class="absolute inset-0 bg-grid opacity-10"></div>
     <div class="container-x relative">
       <div class="text-center mb-8">
-        <span class="badge-neon mb-3">Mapa</span>
+        <span class="badge-neon mb-3">Map</span>
         <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-3">
-          Mapa de <span class="text-neon-400 glow-text">Cobertura</span>
+          Coverage <span class="text-neon-400 glow-text">Map</span>
         </h2>
         <p class="text-white max-w-2xl mx-auto text-sm">
-          Haz click en un marcador para ver la landing de servicios de esa ciudad.
+          Click a marker to view that city's services landing page.
         </p>
       </div>
-      <CityMap />
+      <CityMap lang="en" />
     </div>
   </section>
 
@@ -99,14 +100,14 @@ const breadcrumbSchema = {
   <section class="py-12 relative">
     <div class="container-x">
       <div class="text-center mb-10">
-        <span class="badge-neon mb-4">Ciudades</span>
+        <span class="badge-neon mb-4">Cities</span>
         <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-3">
-          Selecciona tu <span class="text-neon-400">Ciudad</span>
+          Select Your <span class="text-neon-400">City</span>
         </h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {cities.map(c => (
-          <a href={`/cities/${c.slug}/`} class={`card-neon group ${c.destacada ? 'border-orange-500/50 hover:border-orange-500' : ''}`}>
+        {citiesEn.map(c => (
+          <a href={`/en/cities/${c.slug}/`} class={`card-neon group ${c.destacada ? 'border-orange-500/50 hover:border-orange-500' : ''}`}>
             <div class="flex items-start gap-4">
               <div class={`w-14 h-14 rounded-lg ${c.destacada ? 'bg-orange-500/10 border-2 border-orange-500' : 'bg-neon-500/10 border-2 border-neon-500/30'} flex items-center justify-center shrink-0`}>
                 <svg class={`w-7 h-7 ${c.destacada ? 'text-orange-400' : 'text-neon-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,19 +143,19 @@ const breadcrumbSchema = {
     <div class="absolute inset-0 bg-grid opacity-20"></div>
     <div class="container-x relative text-center">
       <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-4">
-        ¿No ves tu <span class="text-neon-400 glow-text">ciudad</span>?
+        Don't see your <span class="text-neon-400 glow-text">city</span>?
       </h2>
       <p class="text-white mb-8 max-w-2xl mx-auto">
-        Probablemente también te atendemos. Escríbenos por WhatsApp para confirmar cobertura en tu área de New Jersey.
+        We probably serve you too. Message us on WhatsApp to confirm coverage in your New Jersey area.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href={waLink()} target="_blank" rel="noopener" class="btn-whatsapp">
+        <a href={waLinkEn()} target="_blank" rel="noopener" class="btn-whatsapp">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
-          Consultar cobertura
+          Check coverage
         </a>
-        <a href="/servicios/" class="btn-outline-neon">Ver servicios</a>
+        <a href="/services/" class="btn-outline-neon">View services</a>
       </div>
     </div>
   </section>

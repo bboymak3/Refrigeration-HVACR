@@ -1,22 +1,22 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import CityMap from '@/components/CityMap.astro';
-import { citiesEn } from '@/data/cities-en';
+import { serviciosEn } from '@/data/servicios-en';
 import { configEn, waLinkEn } from '@/data/config-en';
 
-const pageTitle = 'Coverage Cities in New Jersey';
+const pageTitle = 'Refrigeration & HVAC Services in New Jersey';
 
-// Schema: ItemList de ciudades
+// Schema: ItemList de servicios
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "Coverage cities in New Jersey",
-  "description": "10 cities in New Jersey where Alexandro Refrigeration HVACR offers refrigeration and HVAC service.",
-  "itemListElement": citiesEn.map((c, i) => ({
+  "name": "Refrigeration & HVAC Services in New Jersey",
+  "description": "Complete catalog of commercial refrigeration, HVAC and kitchen equipment services in New Jersey.",
+  "itemListElement": serviciosEn.map((s, i) => ({
     "@type": "ListItem",
     "position": i + 1,
-    "name": `${c.nombre}, NJ`,
-    "url": `${configEn.dominio}/en/cities/${c.slug}/`
+    "name": s.nombre,
+    "url": `${configEn.dominio}/en/services/${s.slug}/`,
+    "description": s.descripcionCorta
   }))
 };
 
@@ -26,17 +26,18 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": `${configEn.dominio}/en/` },
-    { "@type": "ListItem", "position": 2, "name": "Cities", "item": `${configEn.dominio}/en/cities/` }
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": `${configEn.dominio}/en/services/` }
   ]
 };
 ---
 
 <BaseLayout
   lang="en"
-  title="Coverage Cities in New Jersey | Alexandro HVACR"
-  description="We serve 10 cities in New Jersey with commercial refrigeration and HVAC service. Newark, Kearny, Clifton, Passaic, Jersey City and more. EPA 608 certified. WhatsApp 937-450-0421."
-  canonical="/en/cities/"
+  title="Refrigeration & HVAC Services in NJ | Alexandro HVACR"
+  description="Catalog of 9 commercial refrigeration, HVAC, walk-in coolers, freezers, ovens and fryers services in New Jersey. EPA 608 certified, 3-month warranty. WhatsApp 937-450-0421."
+  canonical="/services/"
   skipBreadcrumb={true}
+  skipAutoRepair={false}
 >
   <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -48,18 +49,18 @@ const breadcrumbSchema = {
 
     <div class="container-x relative">
       <nav class="flex items-center gap-2 text-xs text-white mb-8">
-        <a href="/en/" class="hover:text-neon-400 transition-colors">Home</a>
+        <a href="/" class="hover:text-neon-400 transition-colors">Home</a>
         <span>/</span>
-        <span class="text-neon-400">Cities</span>
+        <span class="text-neon-400">Services</span>
       </nav>
 
       <div class="text-center max-w-4xl mx-auto">
-        <span class="badge-neon mb-4">Coverage</span>
+        <span class="badge-neon mb-4">Services</span>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[#4267B2] mb-6 leading-tight text-balance">
-          Cities We <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Cover</span>
+          <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Refrigeration & HVAC</span> Services in New Jersey
         </h1>
         <p class="text-lg md:text-xl text-white mb-8 leading-relaxed">
-          We serve <strong class="text-neon-400">{citiesEn.length} cities in New Jersey</strong> with professional commercial refrigeration and HVAC service. EPA 608 certified technician, 3-month warranty.
+          {serviciosEn.length} specialized services for restaurants, hotels, supermarkets, liquor stores and cafes in NJ. <strong class="text-neon-400">EPA 608 Certified</strong> technician, quality parts and 3-month warranty.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
           <a href={waLinkEn()} target="_blank" rel="noopener" class="btn-whatsapp">
@@ -79,83 +80,60 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <!-- Mapa interactivo -->
-  <section class="py-8 relative overflow-hidden">
-    <div class="absolute inset-0 bg-grid opacity-10"></div>
-    <div class="container-x relative">
-      <div class="text-center mb-8">
-        <span class="badge-neon mb-3">Map</span>
-        <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-3">
-          Coverage <span class="text-neon-400 glow-text">Map</span>
-        </h2>
-        <p class="text-white max-w-2xl mx-auto text-sm">
-          Click a marker to view that city's services landing page.
-        </p>
-      </div>
-      <CityMap lang="en" />
-    </div>
-  </section>
-
-  <!-- Grid de ciudades -->
+  <!-- Grid de servicios -->
   <section class="py-12 relative">
     <div class="container-x">
-      <div class="text-center mb-10">
-        <span class="badge-neon mb-4">Cities</span>
-        <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-3">
-          Select Your <span class="text-neon-400">City</span>
-        </h2>
-      </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {citiesEn.map(c => (
-          <a href={`/en/cities/${c.slug}/`} class={`card-neon group ${c.destacada ? 'border-orange-500/50 hover:border-orange-500' : ''}`}>
-            <div class="flex items-start gap-4">
-              <div class={`w-14 h-14 rounded-lg ${c.destacada ? 'bg-orange-500/10 border-2 border-orange-500' : 'bg-neon-500/10 border-2 border-neon-500/30'} flex items-center justify-center shrink-0`}>
-                <svg class={`w-7 h-7 ${c.destacada ? 'text-orange-400' : 'text-neon-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
+        {serviciosEn.map((servicio, i) => (
+          <article class={`card-neon group relative overflow-hidden ${servicio.destacado ? 'border-orange-500/40 hover:border-orange-500' : ''}`}>
+            <div class="absolute top-4 right-4 text-6xl font-display font-bold text-neon-500/5 select-none">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <div class="relative">
+              <div class={`w-14 h-14 rounded-lg ${servicio.destacado ? 'bg-orange-500/10 border border-orange-500/30' : 'bg-neon-500/10 border border-neon-500/30'} flex items-center justify-center mb-4`}>
+                <span class="text-3xl">{servicio.icono}</span>
               </div>
-              <div class="flex-1">
-                <div class="flex items-center gap-2 mb-1">
-                  <h3 class={`text-lg font-display font-bold ${c.destacada ? 'text-orange-400' : 'text-white group-hover:text-neon-400'} transition-colors`}>
-                    {c.nombre}
-                  </h3>
-                  {c.destacada && <span class="text-[10px] px-2 py-0.5 bg-orange-500 text-dark-500 rounded font-bold uppercase">★</span>}
-                </div>
-                <div class="text-[10px] text-neon-400/70 uppercase tracking-wider mb-2">USA</div>
-                <p class="text-xs text-white line-clamp-2">{c.descripcion}</p>
-                <div class="mt-3 flex flex-wrap gap-1">
-                  {c.sectoresPopulares.slice(0, 3).map(s => (
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-neon-500/10 border border-neon-500/20 text-neon-400">{s}</span>
-                  ))}
-                </div>
+              <div class={`text-xs uppercase tracking-widest font-semibold mb-2 ${servicio.destacado ? 'text-orange-400' : 'text-neon-400'}`}>
+                {servicio.categoria}
+              </div>
+              <h2 class="text-xl font-display font-bold text-[#4267B2] mb-3 group-hover:text-neon-400 transition-colors">
+                <a href={`/en/services/${servicio.slug}/`}>{servicio.nombre}</a>
+              </h2>
+              <p class="text-sm text-white mb-6 line-clamp-3">{servicio.descripcionCorta}</p>
+              <div class="flex flex-col gap-2">
+                <a href={`/en/services/${servicio.slug}/`} class={`text-sm font-semibold ${servicio.destacado ? 'text-orange-400' : 'text-neon-400'} hover:opacity-80 transition-opacity inline-flex items-center gap-1`}>
+                  View details
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </a>
               </div>
             </div>
-          </a>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA final -->
   <section class="py-16 relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-r from-dark-400 via-dark-300 to-dark-400"></div>
     <div class="absolute inset-0 bg-grid opacity-20"></div>
     <div class="container-x relative text-center">
       <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-4">
-        Don't see your <span class="text-neon-400 glow-text">city</span>?
+        Do you need a service <span class="text-neon-400 glow-text">not listed</span>?
       </h2>
       <p class="text-white mb-8 max-w-2xl mx-auto">
-        We probably serve you too. Message us on WhatsApp to confirm coverage in your New Jersey area.
+        Message us on WhatsApp and we'll advise you. We handle all types of refrigeration and HVAC equipment in New Jersey.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a href={waLinkEn()} target="_blank" rel="noopener" class="btn-whatsapp">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
-          Check coverage
+          WhatsApp: {configEn.telefonoDisplay}
         </a>
-        <a href="/en/services/" class="btn-outline-neon">View services</a>
+        <a href="/cities/" class="btn-outline-neon">View cities served</a>
       </div>
     </div>
   </section>

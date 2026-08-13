@@ -1,29 +1,49 @@
 # ============================================================
-# Alexandro Refrigeration HVACR - Redirecciones 301 para URLs sin trailing slash
-# Cloudflare Pages por defecto usa 308, lo cual Google reporta
-# como 'Página con redirección'. Cambiamos a 301 explícito.
+# Alexandro Refrigeration HVACR - Redirecciones
+# Idioma principal: Inglés (raíz /)
+# Idioma secundario: Español (/es/)
 # ============================================================
 
-# ====== Páginas estáticas (redirección a trailing slash) ======
-/servicios        /servicios/        301
-/cities           /cities/           301
-/galeria          /galeria/           301
-/quienes-somos    /quienes-somos/     301
-/contacto         /contacto/          301
-/politica-privacidad  /politica-privacidad/  301
+# ====== Redirecciones de URLs españolas antiguas → /es/ ======
+/servicios/*    /es/services/:splat    301
+/cities/*       /es/cities/:splat       301
+/galeria        /es/gallery/             301
+/galeria/       /es/gallery/             301
+/quienes-somos  /es/about/               301
+/quienes-somos/ /es/about/               301
+/contacto       /es/contact/             301
+/contacto/      /es/contact/             301
+/politica-privacidad     /es/privacy-policy/     301
+/politica-privacidad/    /es/privacy-policy/     301
 
-# ====== Servicios (9) ======
-/servicios/reparacion-refrigeracion-comercial       /servicios/reparacion-refrigeracion-comercial/       301
-/servicios/reparacion-aire-acondicionado            /servicios/reparacion-aire-acondicionado/            301
-/servicios/reparacion-calefaccion                   /servicios/reparacion-calefaccion/                   301
-/servicios/cuartos-frios                            /servicios/cuartos-frios/                            301
-/servicios/reparacion-freezers                      /servicios/reparacion-freezers/                      301
-/servicios/reparacion-estufas-hornos                /servicios/reparacion-estufas-hornos/                301
-/servicios/reparacion-freidoras                     /servicios/reparacion-freidoras/                     301
-/servicios/mantenimiento-preventivo                 /servicios/mantenimiento-preventivo/                 301
-/servicios/instalacion-reemplazo                    /servicios/instalacion-reemplazo/                    301
+# ====== Forzar trailing slash en páginas en inglés (raíz) ======
+/services        /services/        301
+/cities          /cities/          301
+/gallery         /gallery/         301
+/about           /about/           301
+/contact         /contact/         301
+/privacy-policy  /privacy-policy/  301
 
-# ====== Cities (10) ======
+# ====== Forzar trailing slash en páginas en español (/es/) ======
+/es/services        /es/services/        301
+/es/cities          /es/cities/          301
+/es/gallery         /es/gallery/         301
+/es/about           /es/about/           301
+/es/contact         /es/contact/         301
+/es/privacy-policy  /es/privacy-policy/  301
+
+# ====== Servicios (inglés - raíz) ======
+/services/reparacion-refrigeracion-comercial       /services/reparacion-refrigeracion-comercial/       301
+/services/reparacion-aire-acondicionado            /services/reparacion-aire-acondicionado/            301
+/services/reparacion-calefaccion                   /services/reparacion-calefaccion/                   301
+/services/cuartos-frios                            /services/cuartos-frios/                            301
+/services/reparacion-freezers                      /services/reparacion-freezers/                      301
+/services/reparacion-estufas-hornos                /services/reparacion-estufas-hornos/                301
+/services/reparacion-freidoras                     /services/reparacion-freidoras/                     301
+/services/mantenimiento-preventivo                 /services/mantenimiento-preventivo/                 301
+/services/instalacion-reemplazo                    /services/instalacion-reemplazo/                    301
+
+# ====== Ciudades (inglés - raíz) ======
 /cities/kearny         /cities/kearny/         301
 /cities/newark        /cities/newark/         301
 /cities/clifton       /cities/clifton/        301
@@ -35,11 +55,9 @@
 /cities/jersey-city   /cities/jersey-city/    301
 /cities/north-bergen  /cities/north-bergen/   301
 
-# ====== Atajos comunes ======
-/servicio/*   /servicios/:splat  302
-/city/*       /cities/:splat     302
-/ciudad/*     /cities/:splat     302
-/inicio       /                  302
-/home         /                  302
-/galeria-fotos /galeria/         301
-/fotos        /galeria/          301
+# ====== Atajos ======
+/home        /                  302
+/inicio      /                  302
+
+# ====== Old English /en/ URLs → redirect to root ======
+/en/*    /:splat    301

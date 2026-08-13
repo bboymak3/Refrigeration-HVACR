@@ -14,32 +14,34 @@ function escapeXml(unsafe: string): string {
     .replace(/'/g, '&apos;');
 }
 
-// Páginas estáticas con trailing slash (Español + Inglés)
+// Páginas estáticas (Inglés = raíz + Español = /es/)
 const staticPages = [
+  // English (root)
   '/',
-  '/servicios/',
+  '/services/',
   '/cities/',
-  '/galeria/',
-  '/quienes-somos/',
-  '/contacto/',
-  '/politica-privacidad/',
-  // English pages
-  '/en/',
-  '/en/services/',
-  '/en/cities/',
-  '/en/gallery/',
-  '/en/about/',
-  '/en/contact/',
-  '/en/privacy-policy/',
+  '/gallery/',
+  '/about/',
+  '/contact/',
+  '/privacy-policy/',
+  // Spanish (/es/)
+  '/es/',
+  '/es/services/',
+  '/es/cities/',
+  '/es/gallery/',
+  '/es/about/',
+  '/es/contact/',
+  '/es/privacy-policy/',
 ];
 
-const servicioPages = servicios.map(s => `/servicios/${s.slug}/`);
-const cityPages = cities.map(c => `/cities/${c.slug}/`);
-// English service + city pages
-const servicioPagesEn = servicios.map(s => `/en/services/${s.slug}/`);
-const cityPagesEn = cities.map(c => `/en/cities/${c.slug}/`);
+// English service + city pages (root)
+const servicioPagesEn = servicios.map(s => `/services/${s.slug}/`);
+const cityPagesEn = cities.map(c => `/cities/${c.slug}/`);
+// Spanish service + city pages (/es/)
+const servicioPagesEs = servicios.map(s => `/es/services/${s.slug}/`);
+const cityPagesEs = cities.map(c => `/es/cities/${c.slug}/`);
 
-const allPages = [...staticPages, ...servicioPages, ...cityPages, ...servicioPagesEn, ...cityPagesEn];
+const allPages = [...staticPages, ...servicioPagesEn, ...cityPagesEn, ...servicioPagesEs, ...cityPagesEs];
 
 const lastmod = new Date().toISOString().split('T')[0];
 const logoUrl = `${config.dominio}/images/Refrigeration-HVAC-Repair-in-New-Jersey-logo.webp`;
