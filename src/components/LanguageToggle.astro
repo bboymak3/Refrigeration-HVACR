@@ -3,8 +3,8 @@
  * LanguageToggle.astro
  * 
  * Botón para cambiar entre Español e Inglés.
- * Se coloca en el Header, debajo del menú hamburguesa.
- * Detecta automáticamente el idioma actual basado en la URL.
+ * Muestra bandera + letras (🇪🇸 ES / 🇬🇧 EN).
+ * Visible permanentemente en el Header.
  */
 
 // Detectar idioma actual basado en la URL
@@ -23,15 +23,17 @@ if (isEnglish) {
   // Asegurar trailing slash
   if (!targetUrl.endsWith('/')) targetUrl += '/';
 }
+
+// Bandera + texto del idioma al que se va a cambiar
+const flagEmoji = isEnglish ? '🇪🇸' : '🇬🇧';
+const langLabel = isEnglish ? 'ES' : 'EN';
 ---
 
 <a
   href={targetUrl}
-  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-neon-500/30 bg-dark-200/80 text-white hover:bg-neon-500 hover:text-dark-500 transition-all text-xs font-bold uppercase tracking-wide whitespace-nowrap"
-  aria-label={isEnglish ? 'Switch to Spanish' : 'Switch to English'}
+  class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-neon-500/30 bg-dark-200/80 text-white hover:bg-neon-500 hover:text-dark-500 transition-all text-[13px] font-bold uppercase tracking-wide whitespace-nowrap"
+  aria-label={isEnglish ? 'Cambiar a Español' : 'Switch to English'}
 >
-  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
-  </svg>
-  {isEnglish ? 'ES' : 'EN'}
+  <span class="text-base leading-none" style="font-size: 1.1rem;">{flagEmoji}</span>
+  {langLabel}
 </a>
