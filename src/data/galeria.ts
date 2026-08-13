@@ -3,12 +3,12 @@
 // Fotos reales de trabajos de reparación en New Jersey
 // ============================================================
 
-// Lista completa de 35 imágenes de trabajos realizados
+// Lista completa de 32 imágenes de trabajos realizados
+// (originalmente 35, eliminadas #3, #15, #25)
 // Nombres descriptivos generados desde el nombre del archivo
 export const galeriaImagenes: string[] = [
   'Refrigeration-HVAC-Repair-in-New-Jersey (1).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (2).webp',
-  'Refrigeration-HVAC-Repair-in-New-Jersey (3).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (4).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (5).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (6).webp',
@@ -20,7 +20,6 @@ export const galeriaImagenes: string[] = [
   'Refrigeration-HVAC-Repair-in-New-Jersey (12).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (13).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (14).webp',
-  'Refrigeration-HVAC-Repair-in-New-Jersey (15).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (16).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (17).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (18).webp',
@@ -30,7 +29,6 @@ export const galeriaImagenes: string[] = [
   'Refrigeration-HVAC-Repair-in-New-Jersey (22).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (23).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (24).webp',
-  'Refrigeration-HVAC-Repair-in-New-Jersey (25).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (26).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (27).webp',
   'Refrigeration-HVAC-Repair-in-New-Jersey (28).webp',
