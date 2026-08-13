@@ -1,0 +1,337 @@
+---
+/**
+ * FreezerRepairSection.astro
+ * 
+ * Sección con contenido SEO sobre Freezer Repair Services + FES Appliance Repair
+ * + lista de marcas + imagen de logos de marcas.
+ * Se incluye antes del footer en index (EN y ES).
+ */
+import { config, waLink } from '@/data/config';
+import { configEn, waLinkEn } from '@/data/config-en';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const isEn = lang === 'en';
+
+const ac = isEn ? configEn : config;
+const wa = isEn ? waLinkEn : waLink;
+
+// Lista de marcas extraídas de la imagen
+const brands = [
+  'WOLF', 'Whirlpool', 'Westinghouse', 'WELBILT', 'Waste King',
+  'VIKING', 'Vent-A-Hood', 'ULINE', 'Thermador', 'TAPPAN',
+  'SUB-ZERO', 'Speed Queen', 'SHARP', 'Sears', 'SANYO',
+  'SAMSUNG', 'Roper', 'Panasonic', 'Nutone', 'MAYTAG',
+  'MARVEL', 'Magic Chef', 'LG', 'KitchenAid', 'Kenmore',
+  'Kelvinator', 'JENN-AIR', 'Hotpoint', 'HOSHIZAKI', 'Gibson',
+  'GE Appliances', 'FRIGIDAIRE', 'Fisher & Paykel', 'FEDDERS',
+  'ESTATE', 'EMERSON', 'ELKAY', 'Electrolux', 'Danby',
+  'DACOR', 'Caloric', 'BROWN', 'BREAN', 'BOSCH',
+  'Avanti', 'ASKO', 'ARISTON', 'Amana', 'Admiral'
+];
+
+// Tipos de appliances para el grid
+const applianceTypes = isEn
+  ? [
+    { icon: '👕', name: 'Dryer', desc: 'Get your clothes dry efficiently with our swift dryer troubleshooting and repair.' },
+    { icon: '❄️', name: 'Refrigerator', desc: "Maintain your food's freshness with our expert refrigerator repair solutions." },
+    { icon: '🍳', name: 'Oven/Stove/Range', desc: 'Reignite your cooking passion with our precise stove, range, and oven repairs.' },
+    { icon: '🧺', name: 'Washer', desc: 'Restore your laundry routine with expert fixes for all washer types and brands.' },
+    { icon: '🍽️', name: 'Dishwasher', desc: 'Ensure spotless dishes with our comprehensive dishwasher repair services.' },
+    { icon: '🧊', name: 'Freezer', desc: 'Keep your food safely frozen with our quick and reliable freezer fixes.' },
+    { icon: '🔥', name: 'Cooktop', desc: "Restore your kitchen's heart with our specialized cooktop repair services." },
+    { icon: '📡', name: 'Microwave', desc: 'Revive your quick-heating convenience with our microwave repair expertise.' },
+    { icon: '💨', name: 'Hood', desc: "Improve your kitchen's air quality with our efficient range hood repair service." },
+  ]
+  : [
+    { icon: '👕', name: 'Secadora', desc: 'Seca tu ropa eficientemente con nuestro rápido diagnóstico y reparación de secadoras.' },
+    { icon: '❄️', name: 'Refrigerador', desc: 'Mantén la frescura de tus alimentos con nuestras soluciones expertas de reparación de refrigeradores.' },
+    { icon: '🍳', name: 'Horno/Estufa', desc: 'Recupera tu pasión por cocinar con nuestras reparaciones precisas de estufas, hornos y rangos.' },
+    { icon: '🧺', name: 'Lavadora', desc: 'Restaura tu rutina de lavandería con reparaciones expertas para todos los tipos y marcas de lavadoras.' },
+    { icon: '🍽️', name: 'Lavavajillas', desc: 'Asegura platos impecables con nuestros servicios integrales de reparación de lavavajillas.' },
+    { icon: '🧊', name: 'Congelador', desc: 'Mantén tu comida congelada de forma segura con nuestras reparaciones rápidas y confiables.' },
+    { icon: '🔥', name: 'Cooktop', desc: 'Restaura el corazón de tu cocina con nuestros servicios especializados de reparación de cooktops.' },
+    { icon: '📡', name: 'Microondas', desc: 'Revive tu conveniencia de calentamiento rápido con nuestra experiencia en reparación de microondas.' },
+    { icon: '💨', name: 'Campana', desc: 'Mejora la calidad del aire de tu cocina con nuestro eficiente servicio de reparación de campanas.' },
+  ];
+
+// Por qué elegirnos
+const whyChoose = isEn
+  ? [
+    { title: 'Same-Day Service, Quick Response', icon: '⚡' },
+    { title: 'Certified Technicians for All Major Brands', icon: '🛡️' },
+    { title: 'Upfront, No-Surprise Pricing', icon: '💰' },
+    { title: '90-Day Parts and Labor Warranty', icon: '✅' },
+  ]
+  : [
+    { title: 'Servicio el Mismo Día, Respuesta Rápida', icon: '⚡' },
+    { title: 'Técnicos Certificados para Todas las Marcas', icon: '🛡️' },
+    { title: 'Precios Transparentes, Sin Sorpresas', icon: '💰' },
+    { title: 'Garantía de 90 Días en Piezas y Mano de Obra', icon: '✅' },
+  ];
+
+// Razones para elegir freezer repair
+const freezerReasons = isEn
+  ? [
+    { title: 'Certified & Experienced Technicians', desc: 'Our licensed specialists have years of experience repairing all major freezer brands, including Sub-Zero, GE, Whirlpool, Samsung, Frigidaire, and more.' },
+    { title: 'Affordable Pricing & Transparent Quotes', desc: 'We provide upfront pricing with no hidden fees. Our goal is to save you money by repairing your freezer instead of replacing it.' },
+    { title: 'Same-Day & Emergency Repairs', desc: "We understand that a broken freezer can't wait. That's why we offer same-day service and 24/7 emergency freezer repair." },
+    { title: 'Comprehensive Repairs for Homes & Businesses', desc: 'We service residential and commercial freezers, including standalone freezers, refrigerator-freezer combos, walk-in freezers, and chest freezers.' },
+    { title: 'Warranty on Parts & Labor', desc: 'We stand by our work. Most repairs come with a warranty on parts and labor, ensuring lasting performance.' },
+  ]
+  : [
+    { title: 'Técnicos Certificados y Experimentados', desc: 'Nuestros especialistas licenciados tienen años de experiencia reparando todas las marcas principales de congeladores, incluyendo Sub-Zero, GE, Whirlpool, Samsung, Frigidaire y más.' },
+    { title: 'Precios Accesibles y Presupuestos Transparentes', desc: 'Ofrecemos precios por adelantado sin tarifas ocultas. Nuestro objetivo es ahorrarte dinero reparando tu congelador en lugar de reemplazarlo.' },
+    { title: 'Reparaciones el Mismo Día y de Emergencia', desc: 'Entendemos que un congelador dañado no puede esperar. Por eso ofrecemos servicio el mismo día y reparación de emergencia 24/7.' },
+    { title: 'Reparaciones Completas para Hogares y Negocios', desc: 'Reparamos congeladores residenciales y comerciales, incluyendo congeladores independientes, combinaciones refrigerador-congelador, cuartos congeladores y congeladores horizontales.' },
+    { title: 'Garantía en Piezas y Mano de Obra', desc: 'Respaldamos nuestro trabajo. La mayoría de las reparaciones incluyen garantía en piezas y mano de obra, asegurando un rendimiento duradero.' },
+  ];
+
+// Proceso
+const steps = isEn
+  ? [
+    'Contact us for a quick diagnosis and schedule your appointment.',
+    'Our certified technician arrives on time and assesses the issue.',
+    'We provide a clear, upfront quote before beginning any work.',
+    'Your appliance is repaired and tested to ensure optimal performance.',
+  ]
+  : [
+    'Contáctanos para un diagnóstico rápido y agenda tu cita.',
+    'Nuestro técnico certificado llega a tiempo y evalúa el problema.',
+    'Proporcionamos un presupuesto claro y transparente antes de comenzar.',
+    'Tu electrodoméstico es reparado y probado para garantizar un rendimiento óptimo.',
+  ];
+
+// Problemas comunes
+const commonIssues = isEn
+  ? ['Poor cooling', 'Draining issues', 'Power failure', 'Strange noises', 'Dirty dishes', 'Uneven heating', 'Electrical issues', 'Control issues', 'Ice overproduction', 'Ignition problems', 'Frost buildup', 'Fan malfunction']
+  : ['Enfriamiento deficiente', 'Problemas de drenaje', 'Fallo de energía', 'Ruidos extraños', 'Platos sucios', 'Calentamiento irregular', 'Problemas eléctricos', 'Problemas de control', 'Sobreproducción de hielo', 'Problemas de ignición', 'Acumulación de escarcha', 'Mal funcionamiento del ventilador'];
+---
+
+<!-- ====== FREEZER REPAIR SECTION ====== -->
+<section class="py-16 relative" id="freezer-repair">
+  <div class="container-x">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-4">
+        {isEn ? 'Expert Freezer Repair Services' : 'Servicios Expertos de Reparación de Congeladores'}
+      </h2>
+      <p class="text-white leading-relaxed mb-4">
+        {isEn
+          ? 'Is your freezer not cooling properly? Leaking water? Making strange noises? A faulty freezer can lead to food spoilage, higher energy bills, and unnecessary stress.'
+          : '¿Tu congelador no enfría correctamente? ¿Tiene fugas de agua? ¿Hace ruidos extraños? Un congelador defectuoso puede causar desperdicio de alimentos, facturas de energía más altas y estrés innecesario.'}
+      </p>
+      <p class="text-white leading-relaxed mb-8">
+        {isEn
+          ? 'At Alexandro Refrigeration, we provide fast, reliable, and affordable freezer repair services. Our certified technicians handle all major freezer brands, ensuring quick diagnostics and long-lasting repairs. Whether you need emergency service or routine maintenance, we\'ve got you covered.'
+          : 'En Alexandro Refrigeration, proporcionamos servicios de reparación de congeladores rápidos, confiables y asequibles. Nuestros técnicos certificados manejan todas las marcas principales de congeladores, asegurando diagnósticos rápidos y reparaciones duraderas. Ya sea que necesites servicio de emergencia o mantenimiento rutinario, estamos aquí para ayudarte.'}
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        {freezerReasons.map((reason) => (
+          <div class="card-neon">
+            <h3 class="text-sm font-display font-bold text-neon-400 mb-2 uppercase tracking-wide">{reason.title}</h3>
+            <p class="text-sm text-white">{reason.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center">
+        <a href={wa(isEn ? 'Hello, I need freezer repair service' : 'Hola, necesito reparación de congelador')} target="_blank" rel="noopener" class="btn-whatsapp">
+          {isEn ? 'Call Us Today' : 'Llámanos Hoy'}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FES APPLIANCE REPAIR SECTION ====== -->
+<section class="py-16 relative overflow-hidden" id="appliance-repair">
+  <div class="absolute inset-0 bg-grid opacity-10"></div>
+  <div class="container-x relative">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-display font-extrabold text-[#4267B2] mb-4">
+        {isEn ? "New Jersey's Most Trusted Appliance Pros" : 'Los Expertos en Electrodomésticos Más Confiables'}
+      </h2>
+      <p class="text-lg text-white max-w-3xl mx-auto leading-relaxed mb-6">
+        {isEn
+          ? 'Appliance Emergency? Our Fastest Repair Team is Ready to Fix Any Appliance You Need. Experienced & Knowledgeable.'
+          : '¿Emergencia con tus electrodomésticos? Nuestro equipo de reparación más rápido está listo para reparar cualquier electrodoméstico que necesites. Experimentados y Conocedores.'}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={wa(isEn ? 'Hello, I need a technician' : 'Hola, necesito un técnico')} target="_blank" rel="noopener" class="btn-whatsapp">
+          {isEn ? 'Request A Technician' : 'Solicitar un Técnico'}
+        </a>
+        <a href={`tel:${ac.telefonoHref}`} class="btn-outline-neon">
+          {isEn ? `Call Us Today! ${ac.telefonoDisplay}` : `¡Llámanos Hoy! ${ac.telefonoDisplay}`}
+        </a>
+      </div>
+    </div>
+
+    <!-- Why Customers Choose Us -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <h3 class="text-xl md:text-2xl font-display font-bold text-[#4267B2] mb-6 text-center">
+        {isEn ? 'Why Customers Choose Us' : 'Por Qué los Clientes Nos Eligen'}
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {whyChoose.map((reason) => (
+          <div class="card-neon text-center">
+            <div class="text-3xl mb-2">{reason.icon}</div>
+            <p class="text-sm text-white font-semibold">{reason.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="text-center mb-12">
+      <div class="text-5xl md:text-6xl font-display font-extrabold text-neon-400 glow-text mb-2">10+</div>
+      <p class="text-white uppercase tracking-widest text-sm">{isEn ? 'Years of Experience' : 'Años de Experiencia'}</p>
+    </div>
+
+    <!-- We Fix Appliances of All Types -->
+    <div class="max-w-5xl mx-auto mb-16">
+      <h3 class="text-xl md:text-2xl font-display font-bold text-[#4267B2] mb-6 text-center">
+        {isEn ? 'We Fix Appliances of All Types' : 'Reparamos Todo Tipo de Electrodomésticos'}
+      </h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        {applianceTypes.map((app) => (
+          <div class="card-neon group">
+            <div class="text-4xl mb-3">{app.icon}</div>
+            <h4 class="text-sm font-display font-bold text-neon-400 uppercase tracking-wide mb-2">{app.name}</h4>
+            <p class="text-xs text-white leading-relaxed">{app.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Expert Service Steps -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <h3 class="text-xl md:text-2xl font-display font-bold text-[#4267B2] mb-6 text-center">
+        {isEn ? 'Expert Appliance Repair Service' : 'Servicio Experto de Reparación'}
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {steps.map((step, i) => (
+          <div class="card-neon">
+            <div class="text-3xl font-display font-extrabold text-neon-400/30 mb-2">{String(i + 1).padStart(2, '0')}</div>
+            <p class="text-sm text-white">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Commercial Appliance Repair -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <h3 class="text-xl md:text-2xl font-display font-bold text-[#4267B2] mb-4">
+        {isEn ? 'Powering Business: Expert Commercial Appliance Repair' : 'Impulsando Negocios: Reparación Comercial Experta'}
+      </h3>
+      <p class="text-white leading-relaxed mb-6">
+        {isEn
+          ? "We understand that in business, time is money. That's why our commercial appliance repair service is designed for speed and efficiency. From bustling restaurant kitchens to busy laundromats, we keep your operations running smoothly. Our team is skilled in repairing industrial-grade refrigerators, ovens, dishwashers, washing machines, and more. We offer flexible scheduling to minimize disruption, including after-hours and weekend services. With our rapid response times and extensive inventory of commercial parts, we ensure your business stays productive."
+          : 'Entendemos que en los negocios, el tiempo es dinero. Por eso nuestro servicio de reparación de electrodomésticos comerciales está diseñado para velocidad y eficiencia. Desde cocinas de restaurantes concurridas hasta lavanderías, mantenemos tus operaciones funcionando sin problemas. Nuestro equipo está capacitado para reparar refrigeradores industriales, hornos, lavavajillas, lavadoras y más. Ofrecemos horarios flexibles para minimizar interrupciones, incluyendo servicios fuera de horario y fines de semana. Con nuestros tiempos de respuesta rápidos y nuestro extenso inventario de piezas comerciales, aseguramos que tu negocio siga siendo productivo.'}
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <span class="badge-neon">{isEn ? 'Residential: Home Appliances' : 'Residencial: Electrodomésticos del Hogar'}</span>
+        <span class="badge-neon">{isEn ? 'Commercial: Restaurants' : 'Comercial: Restaurantes'}</span>
+        <span class="badge-neon">{isEn ? 'Production' : 'Producción'}</span>
+      </div>
+    </div>
+
+    <!-- Unmatched Excellence -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <h3 class="text-xl md:text-2xl font-display font-bold text-[#4267B2] mb-6 text-center">
+        {isEn ? 'Unmatched Appliance Repair Excellence' : 'Excelencia Inigualable en Reparación'}
+      </h3>
+      <div class="space-y-3">
+        {[
+          isEn ? 'We offer a 30-minute response time for emergency repairs.' : 'Ofrecemos un tiempo de respuesta de 30 minutos para reparaciones de emergencia.',
+          isEn ? 'Our technicians are background-checked and drug-tested for your peace of mind.' : 'Nuestros técnicos tienen verificación de antecedentes y pruebas de drogas para tu tranquilidad.',
+          isEn ? 'We provide upfront, flat-rate pricing with no hidden fees or overtime charges.' : 'Ofrecemos precios fijos por adelantado, sin tarifas ocultas ni cargos por horas extra.',
+          isEn ? "Our friendly customer support ensures you're never left in the dark about your repair." : 'Nuestro amable soporte al cliente asegura que nunca estés en la oscuridad sobre tu reparación.',
+        ].map((text) => (
+          <div class="flex items-start gap-3 card-neon">
+            <svg class="w-5 h-5 text-neon-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <p class="text-sm text-white">{text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Quick and Easy Process -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <h3 class="text-xl md:text-2xl font-display font-bold text-[#4267B2] mb-6 text-center">
+        {isEn ? 'Quick and Easy Process' : 'Proceso Rápido y Sencillo'}
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {steps.map((step, i) => (
+          <div class="card-neon text-center">
+            <div class="w-10 h-10 mx-auto rounded-full bg-neon-500/10 border border-neon-500/30 flex items-center justify-center text-neon-400 font-bold text-sm mb-3">{i + 1}</div>
+            <p class="text-xs text-white">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Common Issues -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <h3 class="text-xl md:text-2xl font-display font-bold text-[#4267B2] mb-6 text-center">
+        {isEn ? 'Common Issues You May Come Across' : 'Problemas Comunes Que Puedes Encontrar'}
+      </h3>
+      <div class="flex flex-wrap gap-2 justify-center">
+        {commonIssues.map((issue) => (
+          <span class="px-3 py-1.5 rounded-lg bg-dark-200 border border-neon-500/20 text-white text-xs font-semibold">{issue}</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <a href={wa(isEn ? 'Hello, I need appliance repair service' : 'Hola, necesito servicio de reparación de electrodomésticos')} target="_blank" rel="noopener" class="btn-whatsapp">
+        {isEn ? 'Request A Technician' : 'Solicitar un Técnico'}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== BRANDS WE SERVE ====== -->
+<section class="py-16 relative overflow-hidden" id="brands-we-serve">
+  <div class="absolute inset-0 bg-grid opacity-10"></div>
+  <div class="container-x relative">
+    <div class="text-center mb-8">
+      <span class="badge-neon mb-4">{isEn ? 'Brands' : 'Marcas'}</span>
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-4">
+        {isEn ? 'Brands We Serve' : 'Marcas que Atendemos'}
+      </h2>
+      <p class="text-white max-w-2xl mx-auto text-sm">
+        {isEn
+          ? 'We repair all major appliance brands. Our certified technicians have experience with all the brands listed below.'
+          : 'Reparamos todas las marcas principales de electrodomésticos. Nuestros técnicos certificados tienen experiencia con todas las marcas listadas a continuación.'}
+      </p>
+    </div>
+
+    <!-- Imagen de logos de marcas -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <img
+        src="/images/logos-house-repairs-png-6-1536x478.png"
+        alt="Appliance brands we repair - Sub-Zero, GE, Whirlpool, Samsung, Frigidaire, Bosch, LG, KitchenAid and more"
+        class="w-full rounded-xl border border-neon-500/20"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Listado de marcas -->
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-wrap gap-2 justify-center">
+        {brands.map((brand) => (
+          <span class="px-3 py-1.5 rounded-lg bg-dark-200 border border-neon-500/20 text-white text-xs font-bold uppercase tracking-wide hover:border-neon-500/50 hover:text-neon-400 transition-all cursor-default">
+            {brand}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

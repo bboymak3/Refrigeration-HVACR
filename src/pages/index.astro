@@ -6,6 +6,7 @@ import CitiesHighlight from '@/components/CitiesHighlight.astro';
 import CityMap from '@/components/CityMap.astro';
 import RealGallery from '@/components/RealGallery.astro';
 import QuoteForm from '@/components/QuoteForm.astro';
+import FreezerRepairSection from '@/components/FreezerRepairSection.astro';
 import { configEn, waLinkEn } from '@/data/config-en';
 import { serviciosEn } from '@/data/servicios-en';
 import { citiesEn } from '@/data/cities-en';
@@ -226,6 +227,10 @@ const servicesItemList = {
       </div>
     </div>
   </section>
+
+  <!-- Formulario de cotización -->
+  <!-- Freezer Repair + Appliance Repair + Brands Section -->
+  <FreezerRepairSection lang="en" />
 
   <!-- Formulario de cotización -->
   <QuoteForm lang="en" />
