@@ -47,7 +47,7 @@ const breadcrumbSchema = {
     <div class="absolute top-0 left-0 w-96 h-96 bg-neon-500/10 rounded-full blur-3xl"></div>
 
     <div class="container-x relative">
-      <nav class="flex items-center gap-2 text-xs text-gray-500 mb-8">
+      <nav class="flex items-center gap-2 text-xs text-white mb-8">
         <a href="/" class="hover:text-neon-400 transition-colors">Inicio</a>
         <span>/</span>
         <span class="text-neon-400">Servicios</span>
@@ -55,10 +55,10 @@ const breadcrumbSchema = {
 
       <div class="text-center max-w-4xl mx-auto">
         <span class="badge-neon mb-4">Servicios</span>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white mb-6 leading-tight text-balance">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[#4267B2] mb-6 leading-tight text-balance">
           Servicios de <span class="text-transparent bg-clip-text bg-gradient-neon glow-text">Refrigeración & HVAC</span> en New Jersey
         </h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+        <p class="text-lg md:text-xl text-white mb-8 leading-relaxed">
           {servicios.length} servicios especializados para restaurantes, hoteles, supermercados, licorerías y cafeterías en NJ. Técnico certificado <strong class="text-neon-400">Licencia 608 de la EPA</strong>, repuestos de calidad y garantía de 3 meses.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -95,10 +95,10 @@ const breadcrumbSchema = {
               <div class={`text-xs uppercase tracking-widest font-semibold mb-2 ${servicio.destacado ? 'text-orange-400' : 'text-neon-400'}`}>
                 {servicio.categoria}
               </div>
-              <h2 class="text-xl font-display font-bold text-white mb-3 group-hover:text-neon-400 transition-colors">
+              <h2 class="text-xl font-display font-bold text-[#4267B2] mb-3 group-hover:text-neon-400 transition-colors">
                 <a href={`/servicios/${servicio.slug}/`}>{servicio.nombre}</a>
               </h2>
-              <p class="text-sm text-gray-400 mb-6 line-clamp-3">{servicio.descripcionCorta}</p>
+              <p class="text-sm text-white mb-6 line-clamp-3">{servicio.descripcionCorta}</p>
               <div class="flex flex-col gap-2">
                 <a href={`/servicios/${servicio.slug}/`} class={`text-sm font-semibold ${servicio.destacado ? 'text-orange-400' : 'text-neon-400'} hover:opacity-80 transition-opacity inline-flex items-center gap-1`}>
                   Ver detalles
@@ -119,10 +119,10 @@ const breadcrumbSchema = {
     <div class="absolute inset-0 bg-gradient-to-r from-dark-400 via-dark-300 to-dark-400"></div>
     <div class="absolute inset-0 bg-grid opacity-20"></div>
     <div class="container-x relative text-center">
-      <h2 class="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-[#4267B2] mb-4">
         ¿Necesitas un servicio <span class="text-neon-400 glow-text">no listado</span>?
       </h2>
-      <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+      <p class="text-white mb-8 max-w-2xl mx-auto">
         Escríbenos por WhatsApp y te asesoramos. Atendemos todo tipo de equipos de refrigeración y HVAC en New Jersey.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">

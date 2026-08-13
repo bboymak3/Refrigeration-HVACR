@@ -16,7 +16,7 @@ const ciudadesTop = cities;
         <h3 class="text-2xl md:text-3xl font-display font-bold text-white mb-3">
           ¿Necesitas <span class="text-neon-400 glow-text">Refrigeration & HVAC Repair</span> en New Jersey?
         </h3>
-        <p class="text-white/90">
+        <p class="text-white">
           Atendemos 10 ciudades de New Jersey con técnico certificado EPA 608. Reparación comercial, residencial y de emergencia. Escríbenos por WhatsApp y coordinamos la visita.
         </p>
       </div>
@@ -53,7 +53,7 @@ const ciudadesTop = cities;
             <span class="text-[10px] text-neon-400 uppercase tracking-widest">HVACR Parts & Repair</span>
           </div>
         </div>
-        <p class="text-sm text-white/90">
+        <p class="text-sm text-white">
           Bienvenido a la Compañía Líder en Reparaciones Alexandro Refrigeration HVAC Parts & Repair Services. Reparación de refrigeración comercial, HVAC y cuartos fríos en New Jersey, USA. Con Licencia 608 de la EPA.
         </p>
         <!-- EPA License badge -->
@@ -61,7 +61,7 @@ const ciudadesTop = cities;
           <span class="text-xl">🛡️</span>
           <div>
             <div class="text-xs font-bold text-neon-400 uppercase tracking-wide">EPA 608 Certified</div>
-            <div class="text-[10px] text-white/90">Licencia federal vigente</div>
+            <div class="text-[10px] text-white">Licencia federal vigente</div>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@ const ciudadesTop = cities;
         <ul class="space-y-2">
           {serviciosTop.map(s => (
             <li>
-              <a href={`/servicios/${s.slug}/`} class="text-sm text-white/90 hover:text-neon-400 transition-colors">
+              <a href={`/servicios/${s.slug}/`} class="text-sm text-white hover:text-neon-400 transition-colors">
                 {s.nombre}
               </a>
             </li>
@@ -85,11 +85,11 @@ const ciudadesTop = cities;
 
       <!-- Columna 3: Ciudades -->
       <div>
-        <h4 class="text-sm font-display font-bold uppercase tracking-widest text-neon-400 mb-4">Ciudades (NJ)</h4>
+        <h4 class="text-sm font-display font-bold uppercase tracking-widest text-neon-400 mb-4">Ciudades</h4>
         <ul class="space-y-2 grid grid-cols-2 gap-x-4">
           {ciudadesTop.map(c => (
             <li>
-              <a href={`/cities/${c.slug}/`} class="text-sm text-white/90 hover:text-neon-400 transition-colors">
+              <a href={`/cities/${c.slug}/`} class="text-sm text-white hover:text-neon-400 transition-colors">
                 {c.nombre}
               </a>
             </li>
@@ -101,18 +101,18 @@ const ciudadesTop = cities;
       <div>
         <h4 class="text-sm font-display font-bold uppercase tracking-widest text-neon-400 mb-4">Empresa</h4>
         <ul class="space-y-2">
-          <li><a href="/quienes-somos/" class="text-sm text-white/90 hover:text-neon-400 transition-colors">Quiénes Somos</a></li>
-          <li><a href="/galeria/" class="text-sm text-white/90 hover:text-neon-400 transition-colors">Galería</a></li>
-          <li><a href="/contacto/" class="text-sm text-white/90 hover:text-neon-400 transition-colors">Contacto</a></li>
-          <li><a href="/politica-privacidad/" class="text-sm text-white/90 hover:text-neon-400 transition-colors">Política de Privacidad</a></li>
-          <li><a href="/sitemap.xml" class="text-sm text-white/90 hover:text-neon-400 transition-colors">Sitemap</a></li>
+          <li><a href="/quienes-somos/" class="text-sm text-white hover:text-neon-400 transition-colors">Quiénes Somos</a></li>
+          <li><a href="/galeria/" class="text-sm text-white hover:text-neon-400 transition-colors">Galería</a></li>
+          <li><a href="/contacto/" class="text-sm text-white hover:text-neon-400 transition-colors">Contacto</a></li>
+          <li><a href="/politica-privacidad/" class="text-sm text-white hover:text-neon-400 transition-colors">Política de Privacidad</a></li>
+          <li><a href="/sitemap.xml" class="text-sm text-white hover:text-neon-400 transition-colors">Sitemap</a></li>
         </ul>
       </div>
 
       <!-- Columna 5: Contacto -->
       <div>
         <h4 class="text-sm font-display font-bold uppercase tracking-widest text-neon-400 mb-4">Contacto</h4>
-        <ul class="space-y-3 text-sm text-white/90">
+        <ul class="space-y-3 text-sm text-white">
           <li class="flex items-start gap-2">
             <svg class="w-4 h-4 mt-0.5 text-neon-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -155,15 +155,15 @@ const ciudadesTop = cities;
   <!-- Footer bottom -->
   <div class="border-t border-neon-500/10">
     <div class="container-x py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-white/80 text-center md:text-left">
+      <p class="text-xs text-white text-center md:text-left">
         © {year} {config.marcaLarga}. Todos los derechos reservados. Refrigeration & HVAC Repair in New Jersey, USA.
       </p>
       <div class="flex flex-wrap items-center gap-4 text-xs">
-        <span class="text-white/80">🛡️ EPA 608 Certified</span>
-        <a href="/quienes-somos/" class="text-white/80 hover:text-neon-400 transition-colors">Quiénes Somos</a>
-        <a href="/contacto/" class="text-white/80 hover:text-neon-400 transition-colors">Contacto</a>
-        <a href="/politica-privacidad/" class="text-white/80 hover:text-neon-400 transition-colors">Política de Privacidad</a>
-        <a href="/sitemap.xml" class="text-white/80 hover:text-neon-400 transition-colors">Sitemap</a>
+        <span class="text-white">🛡️ EPA 608 Certified</span>
+        <a href="/quienes-somos/" class="text-white hover:text-neon-400 transition-colors">Quiénes Somos</a>
+        <a href="/contacto/" class="text-white hover:text-neon-400 transition-colors">Contacto</a>
+        <a href="/politica-privacidad/" class="text-white hover:text-neon-400 transition-colors">Política de Privacidad</a>
+        <a href="/sitemap.xml" class="text-white hover:text-neon-400 transition-colors">Sitemap</a>
       </div>
     </div>
   </div>

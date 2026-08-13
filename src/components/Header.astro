@@ -46,7 +46,7 @@ const navItems = [
           <div class="relative group">
             <a
               href={item.href}
-              class="px-3 py-2 text-sm font-medium text-white/90 hover:text-neon-400 transition-colors uppercase tracking-wide flex items-center gap-1"
+              class="px-3 py-2 text-sm font-medium text-white hover:text-neon-400 transition-colors uppercase tracking-wide flex items-center gap-1"
             >
               {item.label}
               {item.children && (
@@ -60,7 +60,7 @@ const navItems = [
                 {item.children.map(child => (
                   <a
                     href={child.href}
-                    class="block px-4 py-2.5 text-sm text-white/90 hover:bg-neon-500/10 hover:text-neon-400 transition-colors border-b border-neon-500/5 last:border-0"
+                    class="block px-4 py-2.5 text-sm text-white hover:bg-neon-500/10 hover:text-neon-400 transition-colors border-b border-neon-500/5 last:border-0"
                   >
                     {child.label}
                   </a>
@@ -117,7 +117,7 @@ const navItems = [
           {item.children && (
             <div class="pl-4 space-y-1 border-l border-neon-500/20 ml-3">
               {item.children.map(child => (
-                <a href={child.href} class="block px-3 py-1.5 text-xs text-white/90 hover:text-neon-400 transition-colors">
+                <a href={child.href} class="block px-3 py-1.5 text-xs text-white hover:text-neon-400 transition-colors">
                   {child.label}
                 </a>
               ))}
@@ -131,7 +131,7 @@ const navItems = [
         <span class="text-xl">🛡️</span>
         <div>
           <div class="text-xs font-bold text-neon-400 uppercase tracking-wide">Licencia 608 de la EPA</div>
-          <div class="text-[10px] text-white/90">Certificación federal vigente</div>
+          <div class="text-[10px] text-white">Certificación federal vigente</div>
         </div>
       </div>
 

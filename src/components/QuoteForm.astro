@@ -21,7 +21,7 @@ import { config, waLink } from '@/data/config';
       <form id="quote-form" class="card-neon space-y-5">
         <!-- Nombre -->
         <div>
-          <label for="nombre" class="block text-sm font-medium text-white/90 mb-2">
+          <label for="nombre" class="block text-sm font-medium text-white mb-2">
             Nombre <span class="text-neon-400">*</span>
           </label>
           <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo" class="input-neon" />
@@ -30,28 +30,28 @@ import { config, waLink } from '@/data/config';
         <!-- Teléfono + Ciudad -->
         <div class="grid md:grid-cols-2 gap-4">
           <div>
-            <label for="telefono" class="block text-sm font-medium text-white/90 mb-2">
+            <label for="telefono" class="block text-sm font-medium text-white mb-2">
               Teléfono <span class="text-neon-400">*</span>
             </label>
             <input type="tel" id="telefono" name="telefono" required placeholder="201-555-0123" class="input-neon" />
           </div>
           <div>
-            <label for="ciudad" class="block text-sm font-medium text-white/90 mb-2">
-              Ciudad (NJ) <span class="text-neon-400">*</span>
+            <label for="ciudad" class="block text-sm font-medium text-white mb-2">
+              Ciudad <span class="text-neon-400">*</span>
             </label>
             <select id="ciudad" name="ciudad" required class="input-neon">
               <option value="">Selecciona tu ciudad</option>
               {cities.map(c => (
-                <option value={c.nombre}>{c.nombre}, NJ</option>
+                <option value={c.nombre}>{c.nombre}</option>
               ))}
-              <option value="Otra">Otra ciudad de NJ</option>
+              <option value="Otra">Otra ciudad</option>
             </select>
           </div>
         </div>
 
         <!-- Servicio -->
         <div>
-          <label for="servicio" class="block text-sm font-medium text-white/90 mb-2">
+          <label for="servicio" class="block text-sm font-medium text-white mb-2">
             Servicio de interés <span class="text-neon-400">*</span>
           </label>
           <select id="servicio" name="servicio" required class="input-neon">
@@ -65,7 +65,7 @@ import { config, waLink } from '@/data/config';
 
         <!-- Detalle -->
         <div>
-          <label for="mensaje" class="block text-sm font-medium text-white/90 mb-2">
+          <label for="mensaje" class="block text-sm font-medium text-white mb-2">
             Detalla tu falla o consulta <span class="text-neon-400">*</span>
           </label>
           <textarea id="mensaje" name="mensaje" required rows="4" placeholder="Ej: El refrigerador comercial no enfría, el AC no enciende, el walk-in cooler pierde temperatura, etc." class="input-neon resize-none"></textarea>
@@ -74,7 +74,7 @@ import { config, waLink } from '@/data/config';
         <!-- Consentimiento -->
         <div class="flex items-start gap-3">
           <input type="checkbox" id="consentimiento" name="consentimiento" required class="mt-1 w-4 h-4 rounded border-neon-500/30 bg-dark-100 text-neon-500 focus:ring-neon-500/30" />
-          <label for="consentimiento" class="text-xs text-white/90">
+          <label for="consentimiento" class="text-xs text-white">
             Acepto que mis datos sean almacenados para procesar mi solicitud de cotización, según las
             <a href="/politica-privacidad/" class="text-neon-400 hover:underline">Políticas de Privacidad</a>.
           </label>
@@ -96,7 +96,7 @@ import { config, waLink } from '@/data/config';
           </a>
         </div>
 
-        <p class="text-xs text-white/80 text-center">
+        <p class="text-xs text-white text-center">
           Al enviar el formulario, se abrirá WhatsApp con el mensaje pre-armado para que confirmes el envío.
         </p>
       </form>
@@ -121,7 +121,7 @@ import { config, waLink } from '@/data/config';
     const mensaje = `*NUEVA COTIZACIÓN - ALEXANDRO HVACR*%0A%0A` +
       `*Nombre:* ${data.nombre}%0A` +
       `*Teléfono:* ${data.telefono}%0A` +
-      `*Ciudad:* ${data.ciudad}, NJ%0A` +
+      `*Ciudad:* ${data.ciudad}%0A` +
       `*Servicio:* ${data.servicio}%0A` +
       `%0A*Detalle:*%0A${data.mensaje}`;
 
