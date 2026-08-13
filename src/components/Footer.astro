@@ -22,14 +22,14 @@ const prefix = isEn ? '/en' : '';
 const year = new Date().getFullYear();
 
 const t = {
-  ctaTitle: isEn ? 'Need <span class="text-neon-400 glow-text">Refrigeration & HVAC Repair</span> in New Jersey?' : '¿Necesitas <span class="text-neon-400 glow-text">Refrigeration & HVAC Repair</span> en New Jersey?',
+  ctaTitle: isEn ? 'Need <span class="text-neon-400 glow-text">Refrigeration & HVAC Repair</span>?' : '¿Necesitas <span class="text-neon-400 glow-text">Refrigeration & HVAC Repair</span>?',
   ctaText: isEn
-    ? 'We serve 10 cities in New Jersey with EPA 608 certified technician. Commercial, residential and emergency repair. Message us on WhatsApp to coordinate the visit.'
-    : 'Atendemos 10 ciudades de New Jersey con técnico certificado EPA 608. Reparación comercial, residencial y de emergencia. Escríbenos por WhatsApp y coordinamos la visita.',
+    ? 'We serve 10 cities with EPA 608 certified technician. Commercial, residential and emergency repair. Message us on WhatsApp to coordinate the visit.'
+    : 'Atendemos 10 ciudades con técnico certificado EPA 608. Reparación comercial, residencial y de emergencia. Escríbenos por WhatsApp y coordinamos la visita.',
   quoteBtn: isEn ? 'Request Quote' : 'Solicitar Cotización',
   aboutText: isEn
-    ? 'Welcome to Alexandro Refrigeration HVAC Parts & Repair Services. Commercial refrigeration, HVAC and walk-in cooler repair in New Jersey, USA. EPA 608 Certified.'
-    : 'Bienvenido a la Compañía Líder en Reparaciones Alexandro Refrigeration HVAC Parts & Repair Services. Reparación de refrigeración comercial, HVAC y cuartos fríos en New Jersey, USA. Con Licencia 608 de la EPA.',
+    ? 'Alexandro Refrigeration HVAC Parts & Repair Services — your trusted partner for commercial refrigeration, HVAC, walk-in coolers, freezers, stoves, ovens and fryers repair. EPA 608 Certified technician, 3-month warranty, 24/7 emergencies.'
+    : 'Alexandro Refrigeration HVAC Parts & Repair Services — tu socio de confianza para reparación de refrigeración comercial, HVAC, cuartos fríos, freezers, estufas, hornos y freidoras. Técnico certificado EPA 608, garantía de 3 meses, emergencias 24/7.',
   epaBadgeTitle: isEn ? 'EPA 608 Certified' : 'EPA 608 Certified',
   epaBadgeSubtitle: isEn ? 'Active federal license' : 'Licencia federal vigente',
   servicesTitle: isEn ? 'Services' : 'Servicios',
@@ -45,8 +45,8 @@ const t = {
   coverageLabel: isEn ? 'Coverage 10 cities' : 'Cobertura 10 ciudades',
   googleProfile: isEn ? 'Google Profile' : 'Perfil de Google',
   copyright: isEn
-    ? `© ${year} ${activeConfig.marcaLarga}. All rights reserved. Refrigeration & HVAC Repair in New Jersey, USA.`
-    : `© ${year} ${activeConfig.marcaLarga}. Todos los derechos reservados. Refrigeration & HVAC Repair in New Jersey, USA.`,
+    ? `© ${year} ${activeConfig.marcaLarga}. All rights reserved. Refrigeration & HVAC Repair. EPA 608 Certified.`
+    : `© ${year} ${activeConfig.marcaLarga}. Todos los derechos reservados. Refrigeration & HVAC Repair. EPA 608 Certified.`,
 };
 
 const linkMap = isEn
@@ -172,7 +172,7 @@ const linkMap = isEn
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
-            <span>New Jersey, USA<br/><span class="text-neon-400">{t.coverageLabel}</span></span>
+            <span>USA<br/><span class="text-neon-400">{t.coverageLabel}</span></span>
           </li>
           <li class="flex items-center gap-2">
             <svg class="w-4 h-4 text-neon-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
