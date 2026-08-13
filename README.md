@@ -6,15 +6,18 @@
 [![Framework](https://img.shields.io/badge/Astro-4.16-orange)](https://astro.build)
 [![Styles](https://img.shields.io/badge/Tailwind-3.4-blue)](https://tailwindcss.com)
 [![Hosting](https://img.shields.io/badge/Cloudflare-Pages-orange)](https://pages.cloudflare.com)
+[![Languages](https://img.shields.io/badge/i18n-EN%20%2B%20ES-green)](#)
 
-Sitio web oficial de **Alexandro Refrigeration HVAC Parts & Repair Services**, compañía líder en reparación de refrigeración comercial, residencial, HVAC, cuartos fríos, freezers, estufas y freidoras en New Jersey, USA. Atiende restaurantes, hoteles, supermercados, licorerías y cafeterías con técnico certificado **Licencia 608 de la EPA**.
+Sitio web oficial de **Alexandro Refrigeration HVAC Parts & Repair Services**, compañía líder en reparación de refrigeración comercial, residencial, HVAC, cuartos fríos, freezers, estufas, hornos, freidoras y reparación de electrodomésticos en New Jersey, USA. Atiende restaurantes, hoteles, supermercados, licorerías y cafeterías con técnico certificado **Licencia 608 de la EPA**.
 
 ## 🌐 Producción
 
-- **URL principal:** https://refrigeration-hvacr.com
-- **URL alternativa:** https://www.refrigeration-hvacr.com
-- **URL Cloudflare Pages:** https://refrigeration-hvacr.pages.dev
-- **Repositorio:** https://github.com/bboymak3/Refrigeration-HVACR
+| URL | Idioma | Descripción |
+|-----|--------|-------------|
+| **https://refrigeration-hvacr.com** | 🇬🇧 English (principal) | Idioma por defecto (raíz) |
+| **https://refrigeration-hvacr.com/es/** | 🇪🇸 Español | Versión en español |
+| https://refrigeration-hvacr.pages.dev | Cloudflare Pages | URL de deploy |
+| **Repositorio:** https://github.com/bboymak3/Refrigeration-HVACR | | |
 
 ## 📞 Contacto
 
@@ -24,9 +27,33 @@ Sitio web oficial de **Alexandro Refrigeration HVAC Parts & Repair Services**, c
 | **Teléfono (call)** | 937-450-0421 |
 | **Perfil de Google** | https://share.google/YpZpBne3Lfe0qhnYC |
 | **Email** | info@alexandrorefrigeration.com |
-| **Horario** | Lun-Sáb 08:00-20:00, Emergencias 24/7 |
-| **Certificación** | Licencia 608 de la EPA |
+| **Horario** | Mon-Sat 08:00-20:00 · 24/7 Emergencies |
+| **Certificación** | EPA 608 License |
 | **Garantía** | 3 meses en todos los trabajos |
+
+## 🌍 Sitio Bilingüe
+
+El sitio es **bilingüe** con un botón de toggle de idioma (🇬🇧 EN / 🇪🇸 ES) visible permanentemente en el header de todas las páginas.
+
+| Idioma | URL base | `lang` HTML |
+|--------|----------|-------------|
+| **English** (principal) | `/` | `en` |
+| **Español** | `/es/` | `es-US` |
+
+### Estructura de URLs
+
+```
+Inglés (raíz):                    Español (/es/):
+/                                 /es/
+/services/                        /es/services/
+/services/{slug}/                 /es/services/{slug}/
+/cities/                          /es/cities/
+/cities/{slug}/                   /es/cities/{slug}/
+/gallery/                         /es/gallery/
+/about/                           /es/about/
+/contact/                         /es/contact/
+/privacy-policy/                  /es/privacy-policy/
+```
 
 ## 🛠️ Stack Tecnológico
 
@@ -39,11 +66,13 @@ Sitio web oficial de **Alexandro Refrigeration HVAC Parts & Repair Services**, c
 - **CSS Framework:** [Tailwind CSS 3.4](https://tailwindcss.com)
 - **Fuentes:** Orbitron (headings display) + Inter (body)
 - **Paleta de colores:**
+  - Azul Facebook: `#4267B2` (H1, H2)
   - Azul neón: `#00d4ff` (primario - CTAs, links, bordes)
   - Naranja neón: `#ff8a00` (secundario - urgencias, servicios destacados)
   - Dark: `#0a0a0a` (fondo principal)
+  - Blanco: `#ffffff` (todo el texto del contenido)
   - Verde WhatsApp: `#25D366`
-- **Iconografía:** Font Awesome 6.0 + emojis nativos
+- **Iconografía:** Font Awesome 6.0 + emojis nativos + banderas emoji (🇬🇧🇪🇸)
 
 ### Mapas y Visualización
 - **Mapa interactivo:** [Leaflet.js 1.9.4](https://leafletjs.com) con tile layer dark de CARTO
@@ -56,7 +85,7 @@ Sitio web oficial de **Alexandro Refrigeration HVAC Parts & Repair Services**, c
   - `whatsapp_click` - Click en cualquier botón de WhatsApp
   - `phone_click` - Click en enlace tel:
   - `google_profile_click` - Click en perfil de Google
-  - `form_submit` - Envío de formularios (preparado)
+  - `form_submit` - Envío de formularios
 
 ### Schema.org JSON-LD
 - `AutoRepair` - Negocio principal en home y ciudades
@@ -78,13 +107,15 @@ Sitio web oficial de **Alexandro Refrigeration HVAC Parts & Repair Services**, c
 
 | Métrica | Cantidad |
 |---------|----------|
-| **Páginas totales** | 27 HTML |
-| **Servicios** | 9 landings individuales |
-| **Ciudades NJ** | 10 landings individuales |
-| **Páginas estáticas** | 8 (home, servicios/index, cities/index, galeria, quienes-somos, contacto, politica-privacidad, 404) |
-| **Imágenes de galería** | 35 fotos reales (.webp) |
-| **Imágenes en sitemap** | 242 referencias |
-| **URLs en sitemap** | 26 |
+| **Páginas HTML totales** | 54 (27 EN + 27 ES) |
+| **Servicios** | 9 landings × 2 idiomas = 18 |
+| **Ciudades NJ** | 10 landings × 2 idiomas = 20 |
+| **Páginas estáticas** | 8 × 2 idiomas = 16 |
+| **Imágenes de galería** | 32 fotos reales (.webp) |
+| **Imagen de logos de marcas** | 1 (50 marcas listadas) |
+| **Imágenes en sitemap** | 242+ referencias |
+| **URLs en sitemap** | 52 (26 EN + 26 ES) |
+| **Marcas atendidas** | 50 (Sub-Zero, GE, Whirlpool, Samsung, etc.) |
 | **Schemas JSON-LD** | 0 errores, 0 duplicados |
 
 ## 🗺️ Ciudades de Cobertura (New Jersey)
@@ -106,15 +137,19 @@ Sitio web oficial de **Alexandro Refrigeration HVAC Parts & Repair Services**, c
 
 | # | Servicio | Slug | Icono |
 |---|----------|------|-------|
-| 1 | Reparación de Refrigeración Comercial | `reparacion-refrigeracion-comercial` | ❄️ |
-| 2 | Reparación de Aire Acondicionado | `reparacion-aire-acondicionado` | 🌬️ |
-| 3 | Reparación de Calefacción | `reparacion-calefaccion` | 🔥 |
-| 4 | Cuartos Fríos / Walk-in Coolers | `cuartos-frios` | 🏪 |
-| 5 | Reparación de Freezers | `reparacion-freezers` | 🧊 |
-| 6 | Reparación de Estufas y Hornos | `reparacion-estufas-hornos` | 🍳 |
-| 7 | Reparación de Freidoras (Fryers) | `reparacion-freidoras` | 🍟 |
-| 8 | Mantenimiento Preventivo | `mantenimiento-preventivo` | 🛠️ |
-| 9 | Instalación y Reemplazo | `instalacion-reemplazo` | 📦 |
+| 1 | Commercial Refrigeration Repair | `reparacion-refrigeracion-comercial` | ❄️ |
+| 2 | Air Conditioning Repair | `reparacion-aire-acondicionado` | 🌬️ |
+| 3 | Heating Repair | `reparacion-calefaccion` | 🔥 |
+| 4 | Walk-in Coolers & Freezers | `cuartos-frios` | 🏪 |
+| 5 | Freezer Repair | `reparacion-freezers` | 🧊 |
+| 6 | Stove & Oven Repair | `reparacion-estufas-hornos` | 🍳 |
+| 7 | Commercial Fryer Repair | `reparacion-freidoras` | 🍟 |
+| 8 | Preventive Maintenance | `mantenimiento-preventivo` | 🛠️ |
+| 9 | Installation & Replacement | `instalacion-reemplazo` | 📦 |
+
+## 🏷️ Marcas que Atendemos (50)
+
+WOLF, Whirlpool, Westinghouse, WELBILT, Waste King, VIKING, Vent-A-Hood, ULINE, Thermador, TAPPAN, SUB-ZERO, Speed Queen, SHARP, Sears, SANYO, SAMSUNG, Roper, Panasonic, Nutone, MAYTAG, MARVEL, Magic Chef, LG, KitchenAid, Kenmore, Kelvinator, JENN-AIR, Hotpoint, HOSHIZAKI, Gibson, GE Appliances, FRIGIDAIRE, Fisher & Paykel, FEDDERS, ESTATE, EMERSON, ELKAY, Electrolux, Danby, DACOR, Caloric, BROWN, BREAN, BOSCH, Avanti, ASKO, ARISTON, Amana, Admiral
 
 ## 📁 Estructura del Proyecto
 
@@ -126,7 +161,7 @@ Refrigeration-HVACR/
 ├── package.json                  # Dependencias
 ├── public/                       # Archivos estáticos
 │   ├── _headers                  # Cache-Control headers por archivo
-│   ├── _redirects                # 32 redirecciones 301 (trailing slash)
+│   ├── _redirects                # Redirecciones 301 (EN raíz + ES /es/ + URLs antiguas)
 │   ├── robots.txt                # Permite Googlebot-Image + msnbot-media
 │   ├── site.webmanifest          # PWA manifest con iconos
 │   ├── favicon.ico               # Multi-resolution (16/32/48)
@@ -134,56 +169,72 @@ Refrigeration-HVACR/
 │   ├── apple-touch-icon.png      # iOS (180x180)
 │   ├── android-chrome-192/512.png # Android PWA
 │   ├── favicon.svg               # SVG fallback
-│   └── images/                   # 35 fotos reales + logo
+│   └── images/                   # 32 fotos de galería + logo + logos de marcas
 │       ├── Refrigeration-HVAC-Repair-in-New-Jersey-logo-alexandro.png (fuente)
 │       ├── Refrigeration-HVAC-Repair-in-New-Jersey-logo.webp (uso)
 │       ├── Refrigeration-HVAC-Repair-in-New-Jersey-logo.png (backup)
-│       └── Refrigeration-HVAC-Repair-in-New-Jersey (1-35).webp (galería)
+│       ├── Refrigeration-HVAC-Repair-in-New-Jersey (1-35).webp (galería, 32 fotos)
+│       └── logos-house-repairs-png-6-1536x478.png (imagen de marcas)
 └── src/
     ├── components/
-    │   ├── Header.astro          # Nav fijo + logo + menu + WhatsApp/Call
-    │   ├── Footer.astro           # 5 columnas + logo + EPA badge
-    │   ├── Hero.astro            # Hero home (logo flotando + stats + CTAs)
-    │   ├── Services.astro        # Grid 9 servicios con foto real
-    │   ├── CitiesHighlight.astro # Grid 10 ciudades con links
-    │   ├── CityMap.astro         # Mapa Leaflet dark con marcadores NJ
-    │   ├── RealGallery.astro    # Galería reutilizable + lightbox
-    │   ├── QuoteForm.astro       # Formulario de cotización
-    │   ├── WhatsAppCTA.astro    # Botón flotante WhatsApp
-    │   ├── BottomNav.astro       # Nav inferior mobile (Call + WhatsApp)
+    │   ├── Header.astro           # Nav fijo + logo + menu + LanguageToggle + WhatsApp/Call
+    │   ├── Footer.astro            # 5 columnas + logo + EPA badge (bilingüe)
+    │   ├── Hero.astro             # Hero home (logo flotando + stats + CTAs)
+    │   ├── Services.astro         # Grid 9 servicios con foto real (bilingüe)
+    │   ├── CitiesHighlight.astro  # Grid 10 ciudades con links (bilingüe)
+    │   ├── CityMap.astro          # Mapa Leaflet dark con marcadores NJ (bilingüe)
+    │   ├── RealGallery.astro     # Galería reutilizable + lightbox (bilingüe)
+    │   ├── FreezerRepairSection.astro # Sección SEO Freezer+Appliance+Brands (bilingüe)
+    │   ├── QuoteForm.astro        # Formulario de cotización (bilingüe)
+    │   ├── LanguageToggle.astro   # Botón 🇬🇧EN/🇪🇸ES con banderas
+    │   ├── WhatsAppCTA.astro      # Botón flotante WhatsApp
+    │   ├── BottomNav.astro        # Nav inferior mobile (Call + WhatsApp)
     │   ├── GoogleReviewsModal.astro # Modal perfil Google 5 estrellas
     │   ├── EpaLicenseBadge.astro # Badge EPA 608 Certified
-    │   └── Analytics.astro      # Eventos GA4 (whatsapp_click, etc.)
+    │   ├── Analytics.astro       # Eventos GA4 (whatsapp_click, etc.)
+    │   └── Gallery.astro          # Galería antigua (no usada)
     ├── data/
-    │   ├── config.ts            # Datos empresa (teléfono, WhatsApp, dominio)
-    │   ├── servicios.ts         # 9 servicios (slug, nombre, FAQ, beneficios)
-    │   ├── cities.ts            # 10 ciudades NJ (slug, coords, sectores)
-    │   └── galeria.ts           # 35 imágenes + helpers + captions SEO
+    │   ├── config.ts             # Datos empresa ES (teléfono, WhatsApp, dominio)
+    │   ├── config-en.ts          # Datos empresa EN
+    │   ├── servicios.ts          # 9 servicios ES (slug, nombre, FAQ, beneficios)
+    │   ├── servicios-en.ts       # 9 servicios EN
+    │   ├── cities.ts            # 10 ciudades NJ ES
+    │   ├── cities-en.ts         # 10 ciudades NJ EN
+    │   └── galeria.ts           # 32 imágenes + helpers + captions SEO
     ├── layouts/
-    │   └── BaseLayout.astro     # HTML base: meta tags, GA4, schemas, favicons
+    │   └── BaseLayout.astro     # HTML base: meta tags, GA4, schemas, favicons, lang prop
     ├── pages/
-    │   ├── index.astro          # Home con Hero + Services + Map + Gallery + CTAs
-    │   ├── servicios/
-    │   │   ├── index.astro      # Catálogo 9 servicios
-    │   │   └── [slug].astro     # Landing por servicio (9 generadas)
+    │   ├── index.astro          # Home EN (Hero + Services + Gallery + Map + FreezerRepair + Brands)
+    │   ├── services/
+    │   │   ├── index.astro      # Catálogo 9 servicios EN
+    │   │   └── [slug].astro     # Landing por servicio EN (9 generadas)
     │   ├── cities/
-    │   │   ├── index.astro      # Catálogo 10 ciudades
-    │   │   └── [slug].astro     # Landing por ciudad (10 generadas)
-    │   ├── galeria.astro        # Galería completa con 35 fotos + ImageGallery schema
-    │   ├── quienes-somos.astro  # Historia + EPA 608 + misión
-    │   ├── contacto.astro       # Formulario + WhatsApp + teléfono + mapa
-    │   ├── politica-privacidad.astro
-    │   ├── 404.astro            # Página 404 personalizada
-    │   └── sitemap.xml.ts       # Sitemap dinámico (26 URLs + 242 imágenes)
+    │   │   ├── index.astro      # Catálogo 10 ciudades EN
+    │   │   └── [slug].astro     # Landing por ciudad EN (10 generadas)
+    │   ├── gallery.astro        # Galería completa 32 fotos EN
+    │   ├── about.astro          # About us EN
+    │   ├── contact.astro       # Contacto EN
+    │   ├── privacy-policy.astro # Política de privacidad EN
+    │   ├── 404.astro           # Página 404 EN
+    │   ├── sitemap.xml.ts      # Sitemap dinámico (52 URLs + imágenes)
+    │   └── es/                  # Versión Español (/es/)
+    │       ├── index.astro     # Home ES
+    │       ├── services/       # 9 servicios ES
+    │       ├── cities/         # 10 ciudades ES
+    │       ├── gallery.astro   # Galería ES
+    │       ├── about.astro     # About ES
+    │       ├── contact.astro   # Contacto ES
+    │       ├── privacy-policy.astro
+    │       └── 404.astro
     └── styles/
-        └── global.css          # Tailwind + componentes custom (btn-neon, etc.)
+        └── global.css          # Tailwind + componentes custom (btn-neon, section-title, etc.)
 ```
 
 ## 🎯 SEO y Optimización
 
 ### Meta tags (en BaseLayout.astro)
-- Title y description dinámicos por página
-- Open Graph (Facebook, WhatsApp)
+- Title y description dinámicos por página y por idioma
+- Open Graph (Facebook, WhatsApp) con `og:locale` dinámico
 - Twitter Card
 - Canonical URLs con trailing slash
 - `robots: index, follow, max-image-preview:large`
@@ -196,20 +247,21 @@ Refrigeration-HVACR/
 - `OfferCatalog` usa `ListItem` (no `Offer` sin precio)
 
 ### Sitemap.xml
-- 26 URLs (1 home + 9 servicios + 10 ciudades + 6 estáticas)
-- 242 referencias de imágenes con caption SEO
+- 52 URLs (26 EN raíz + 26 ES /es/)
+- 242+ referencias de imágenes con caption SEO
 - Formato Google Image Sitemap (`xmlns:image`)
 - Caracteres XML escapados (`&` → `&amp;`)
 
 ### robots.txt
-- `Allow: /images/`, `/servicios/`, `/cities/`, `/galeria/`
+- `Allow: /images/`, `/services/`, `/cities/`, `/gallery/`
 - `User-agent: Googlebot-Image` con `Allow: /`
 - `User-agent: msnbot-media` (Bing Images) con `Allow: /`
 - Bloquea bots maliciosos (MJ12bot, DotBot)
 
 ### Redirecciones 301 (_redirects)
-- 32 reglas para forzar trailing slash
-- Evita URLs duplicadas (Google Search Console)
+- URLs antiguas españolas (`/servicios/*`, `/galeria/`) → `/es/`
+- URLs antiguas inglesas (`/en/*`) → raíz `/*`
+- Forzar trailing slash en ambas versiones
 
 ## 🚀 Desarrollo Local
 
@@ -225,7 +277,7 @@ npm install
 npm run dev      # http://localhost:4321
 
 # Build de producción
-npm run build    # genera /dist
+npm run build    # genera /dist (54 páginas)
 
 # Preview del build
 npm run preview
@@ -242,29 +294,29 @@ git push origin main
 # Cloudflare Pages detecta el push y deploya automáticamente
 ```
 
-### Deploy manual (alternativo)
-
-```bash
-# Si tienes wrangler configurado
-npx wrangler pages deploy dist --project-name refrigeration-hvacr --branch main
-```
-
 ## 🔧 Configuración
 
-### Variables importantes en `src/data/config.ts`
+### Variables importantes en `src/data/config.ts` (ES) y `src/data/config-en.ts` (EN)
 
 ```typescript
+// Español
 export const config = {
-  marca: 'Alexandro Refrigeration HVACR',
+  marca: 'ALEXANDRO REFRIGERATION',
   marcaLarga: 'Alexandro Refrigeration HVAC Parts & Repair Services',
   telefonoDisplay: '937-450-0421',
   telefonoHref: '9374500421',       // sin +1
-  whatsapp: '19374500421',
+  whatsappNumero: '19374500421',
   whatsappUrl: 'https://wa.me/19374500421?text=...',
   googleUrl: 'https://share.google/YpZpBne3Lfe0qhnYC',
   email: 'info@alexandrorefrigeration.com',
   dominio: 'https://refrigeration-hvacr.com',
-  // ...
+  clientesTipicos: ['restaurantes', 'hoteles', 'supermercados', 'licorerías', 'cafeterías'],
+};
+
+// English (configEn)
+export const configEn = {
+  // ... mismos datos pero con textos en inglés
+  clientesTipicos: ['restaurants', 'hotels', 'supermarkets', 'liquor stores', 'cafes'],
 };
 ```
 
@@ -272,6 +324,12 @@ export const config = {
 - **ID de medición:** `G-5P8YVWDWEK`
 - **Eventos personalizados:** Implementados en `src/components/Analytics.astro`
 - **Eventos trackeados:** `whatsapp_click`, `phone_click`, `google_profile_click`, `form_submit`
+
+### LanguageToggle
+- Componente: `src/components/LanguageToggle.astro`
+- Detecta idioma por URL (`/es/` = español, resto = inglés)
+- Muestra 🇪🇸 ES (en inglés) o 🇬🇧 EN (en español)
+- Visible permanentemente en el header (no dentro del menú hamburguesa)
 
 ## 📱 PWA Ready
 
@@ -282,18 +340,13 @@ El sitio incluye `site.webmanifest` con:
 - `background_color: #0a0a0a`
 - `display: standalone`
 
-## 🌍 Idioma
-
-- **Idioma principal:** Español (es-US) - dirigido a comunidad hispana de NJ
-- **Keywords SEO en inglés:** "commercial refrigeration repair", "newark cooler repair", "newark hvac repairs", "refrigeration newark nj bloomfield ave", "hvac repair nj"
-
 ## 📄 Licencia
 
 Propiedad de **Alexandro Refrigeration HVAC Parts & Repair Services**.
 
 ## 👨‍🔧 Sobre la Empresa
 
-**Alexandro Refrigeration HVAC Parts & Repair Services** es una compañía de reparación de refrigeración y HVAC en New Jersey, fundada por un técnico que comenzó como ayudante, obtuvo su **Licencia 608 de la EPA** (certificación federal obligatoria para manejar gas refrigerante en Estados Unidos) y registró la compañía para servir a la comunidad hispana y anglo de NJ.
+**Alexandro Refrigeration HVAC Parts & Repair Services** es una compañía de reparación de refrigeración, HVAC y electrodomésticos en New Jersey, fundada por un técnico que comenzó como ayudante, obtuvo su **Licencia 608 de la EPA** (certificación federal obligatoria para manejar gas refrigerante en Estados Unidos) y registró la compañía para servir a la comunidad hispana y anglo de NJ.
 
 ### Servicios principales
 - Refrigeración comercial (restaurantes, supermercados, licorerías)
@@ -304,9 +357,13 @@ Propiedad de **Alexandro Refrigeration HVAC Parts & Repair Services**.
 - Freidoras comerciales
 - Mantenimiento preventivo
 - Instalación y reemplazo de equipos
+- Reparación de electrodomésticos (Dryer, Refrigerator, Oven, Washer, Dishwasher, Freezer, Cooktop, Microwave, Hood)
 
 ### Áreas de servicio
 10 ciudades de New Jersey: Kearny, Newark, Clifton, Passaic, Fairview, Garfield, Paterson, Union City, Jersey City, North Bergen.
+
+### Marcas atendidas
+50 marcas incluyendo: Sub-Zero, GE, Whirlpool, Samsung, Frigidaire, Bosch, LG, KitchenAid, Kenmore, Maytag, Viking, Thermador, Jenn-Air, Hotpoint, Electrolux, Amana, Admiral y más.
 
 ---
 
