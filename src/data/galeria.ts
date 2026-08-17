@@ -108,7 +108,7 @@ export const getImagenParaServicio = (slug: string): string => {
     'reparacion-estufas-hornos': 'servicio-reparacion-estufas-hornos.webp',
     'reparacion-freidoras': 'servicio-reparacion-freidoras.webp',
     'mantenimiento-preventivo': 'servicio-mantenimiento-preventivo.webp',
-    'instalacion-reemplazo': galeriaImagenes[19], // Usa galería (no hay imagen dedicada)
+    'instalacion-reemplazo': galeriaImagenes[4], // Refrigeration-HVAC-Repair-in-New-Jersey (5).webp
   };
   return mapping[slug] ?? galeriaImagenes[0];
 };
