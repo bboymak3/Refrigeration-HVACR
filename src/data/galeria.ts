@@ -98,19 +98,19 @@ export const getImagenesDestacadas = (count: number = 6, offset: number = 0): st
 
 // Imagen única para un servicio específico (basado en slug)
 export const getImagenParaServicio = (slug: string): string => {
-  const mapping: Record<string, number> = {
-    'reparacion-refrigeracion-comercial': 0,
-    'reparacion-aire-acondicionado': 3,
-    'reparacion-calefaccion': 11,
-    'cuartos-frios': 5,
-    'reparacion-freezers': 3,
-    'reparacion-estufas-hornos': 9,
-    'reparacion-freidoras': 10,
-    'mantenimiento-preventivo': 4,
-    'instalacion-reemplazo': 19,
+  // Imágenes dedicadas por servicio (recortadas sin franjas negras)
+  const mapping: Record<string, string> = {
+    'reparacion-refrigeracion-comercial': galeriaImagenes[0], // Usa galería (no hay imagen dedicada)
+    'reparacion-aire-acondicionado': 'servicio-reparacion-aire-acondicionado.webp',
+    'reparacion-calefaccion': 'servicio-reparacion-calefaccion.webp',
+    'cuartos-frios': 'servicio-cuartos-frios.webp',
+    'reparacion-freezers': 'servicio-reparacion-freezers.webp',
+    'reparacion-estufas-hornos': 'servicio-reparacion-estufas-hornos.webp',
+    'reparacion-freidoras': 'servicio-reparacion-freidoras.webp',
+    'mantenimiento-preventivo': 'servicio-mantenimiento-preventivo.webp',
+    'instalacion-reemplazo': galeriaImagenes[19], // Usa galería (no hay imagen dedicada)
   };
-  const idx = mapping[slug] ?? 0;
-  return galeriaImagenes[idx];
+  return mapping[slug] ?? galeriaImagenes[0];
 };
 
 // Imagen única para una ciudad específica
