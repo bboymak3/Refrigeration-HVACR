@@ -4,9 +4,9 @@
 // ============================================================
 
 export const config = {
-  marca: 'ALEXANDRO REFRIGERATION',
-  marcaLarga: 'Alexandro Refrigeration HVAC Parts & Repair Services',
-  marcaCorta: 'Alexandro HVACR',
+  marca: 'ALEXANDRO REFRIGERATION H.V.A.C.R',
+  marcaLarga: 'Alexandro Refrigeration H.V.A.C.R Parts & Repair Services',
+  marcaCorta: 'Alexandro H.V.A.C.R',
   // Teléfono display: 937-450-0421 — SIN prefijo +1 en el href tel:
   telefonoDisplay: '937-450-0421',
   telefonoHref: '9374500421',

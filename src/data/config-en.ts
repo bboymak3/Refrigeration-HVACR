@@ -3,9 +3,9 @@
 // ============================================================
 
 export const configEn = {
-  marca: 'ALEXANDRO REFRIGERATION',
-  marcaLarga: 'Alexandro Refrigeration HVAC Parts & Repair Services',
-  marcaCorta: 'Alexandro HVACR',
+  marca: 'ALEXANDRO REFRIGERATION H.V.A.C.R',
+  marcaLarga: 'Alexandro Refrigeration H.V.A.C.R Parts & Repair Services',
+  marcaCorta: 'Alexandro H.V.A.C.R',
   telefonoDisplay: '937-450-0421',
   telefonoHref: '9374500421',
   whatsappNumero: '19374500421',
