@@ -234,7 +234,7 @@ export const servicios: Servicio[] = [
   // 6. Estufas y Hornos
   {
     slug: 'reparacion-estufas-hornos',
-    nombre: 'Reparación de Estufas y Hornos',
+    nombre: 'Reparación de Estufas y Hornos Comerciales',
     icono: '🍳',
     categoria: 'Equipos de Cocina',
     descripcionCorta: 'Reparación de estufas, hornos, rangos (gas y eléctricos) en restaurantes y hogares.',

@@ -169,7 +169,7 @@ export const serviciosEn: Servicio[] = [
   },
   {
     slug: 'reparacion-estufas-hornos',
-    nombre: 'Stove & Oven Repair',
+    nombre: 'Stove & Commercial Oven Repair',
     icono: '🍳',
     categoria: 'Kitchen Equipment',
     descripcionCorta: 'Repair of stoves, ovens, ranges (gas and electric) in restaurants and homes.',
